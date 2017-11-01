@@ -1,0 +1,205 @@
+﻿  MainApplication.cpp
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\music.h(55): warning C4244: 'return' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\globaldevicecontext.h(178): warning C4244: '초기화 중' : 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\globaldevicecontext.h(227): warning C4244: '초기화 중' : 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\globaldevicecontext.h(266): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\skybox.h(40): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\skybox.h(42): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\box.h(41): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\box.h(44): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\particleemitter.h(235): warning C4244: '초기화 중' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\entityshader.h(135): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\entityshader.h(140): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\entityshader.h(175): warning C4101: 't' :참조되지 않은 지역 변수입니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\soundsystem.h(123): warning C4150: 불완전한 형식 'FMOD_CHANNEL'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
+          c:\program files (x86)\fmod soundsystem\fmod programmers api windows\api\inc\fmod.h(65) : 'FMOD_CHANNEL' 선언을 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\soundsystem.h(128): warning C4150: 불완전한 형식 'FMOD_SOUND'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
+          c:\program files (x86)\fmod soundsystem\fmod programmers api windows\api\inc\fmod.h(64) : 'FMOD_SOUND' 선언을 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\soundsystem.h(131): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\soundsystem.h(131): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\soundsystem.h(135): warning C4150: 불완전한 형식 'FMOD_SOUND'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
+          c:\program files (x86)\fmod soundsystem\fmod programmers api windows\api\inc\fmod.h(64) : 'FMOD_SOUND' 선언을 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\soundsystem.h(144): warning C4150: 불완전한 형식 'FMOD_SYSTEM'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
+          c:\program files (x86)\fmod soundsystem\fmod programmers api windows\api\inc\fmod.h(63) : 'FMOD_SYSTEM' 선언을 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(79): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(159): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(202): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(210): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(220): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(232): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(234): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(312): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(318): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(321): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(344): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\text.h(9): warning C4005: 'BLING_TIME' : 매크로 재정의
+          c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\gui.h(8) : 'BLING_TIME'의 이전 정의를 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\text.h(94): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(18): warning C4005: 'PRESS_TIME_DIFFERENCE' : 매크로 재정의
+          c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainscene.h(16) : 'PRESS_TIME_DIFFERENCE'의 이전 정의를 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(139): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(148): warning C4244: '=' : 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(187): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(200): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(205): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(214): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(254): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(276): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(284): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(286): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(396): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(408): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(479): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(16): warning C4005: 'PRESS_TIME_DIFFERENCE' : 매크로 재정의
+          c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\selectmusicscene.h(18) : 'PRESS_TIME_DIFFERENCE'의 이전 정의를 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(146): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(162): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(173): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(175): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(214): warning C4305: '인수' : 'double'에서 'FLOAT'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(215): warning C4305: '인수' : 'double'에서 'FLOAT'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(264): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(277): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\optionscene.h(77): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\optionscene.h(160): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\optionscene.h(172): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\optionscene.h(184): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\optionscene.h(186): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\optionscene.h(246): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\optionscene.h(269): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\defs.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\matrix3x3.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\matrix4x4.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\matrix3x3.inl : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\matrix3x3.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\matrix4x4.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\matrix4x4.inl : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\matrix4x4.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\assimp-3.1.1\include\assimp\matrix3x3.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\modelshader.h(74): warning C4101: 't' :참조되지 않은 지역 변수입니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mesh.h(84): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(26): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(59): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(84): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(90): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(102): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(127): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(130): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(141): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\model.h(149): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(54): warning C4244: '=' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(74): warning C4244: '=' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(121): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'Animation::AnimState' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(126): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'Animation::AnimState' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(127): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'Animation::AnimState' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(132): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'Animation::AnimState' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(133): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'Animation::AnimState' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(138): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'Animation::AnimState' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(139): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'Animation::AnimState' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\animation.h(153): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'Animation::AnimState' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(60): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(66): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(75): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(75): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(77): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(127): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(169): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(170): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerCollisionStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(180): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerCollisionStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(199): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerCollisionStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(205): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerCollisionStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(219): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(222): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(241): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(245): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(248): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(392): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerCollisionStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\player.h(395): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerCollisionStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(29): warning C4005: 'PRESS_TIME_DIFFERENCE' : 매크로 재정의
+          c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\resultscene.h(16) : 'PRESS_TIME_DIFFERENCE'의 이전 정의를 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(234): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(238): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(242): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(253): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(257): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(261): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(271): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(275): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(279): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(348): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(353): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(353): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(395): warning C4244: '인수' : 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(444): warning C4244: '인수' : 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(492): warning C4244: '인수' : 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(504): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(509): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(514): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(519): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(524): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(527): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(530): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(535): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(540): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(559): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(567): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(578): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(589): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(600): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(611): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(631): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerCollisionStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(635): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(657): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(679): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(702): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(707): warning C4305: '-=' : 'double'에서 'FLOAT'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(735): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(780): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(783): warning C4554: '|' : 연산자 우선 순위에 오류가 있는지 확인하십시오. 괄호를 사용하여 우선 순위를 명확하게 지정하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(792): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(795): warning C4554: '|' : 연산자 우선 순위에 오류가 있는지 확인하십시오. 괄호를 사용하여 우선 순위를 명확하게 지정하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(804): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(807): warning C4554: '|' : 연산자 우선 순위에 오류가 있는지 확인하십시오. 괄호를 사용하여 우선 순위를 명확하게 지정하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(828): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(865): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(868): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(871): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(876): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(881): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(887): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(890): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(893): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(896): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(924): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(935): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(943): warning C4244: '인수' : 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(946): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(989): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(997): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1005): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1014): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1023): warning C4244: '인수' : 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1023): warning C4244: '인수' : 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1024): warning C4244: '인수' : 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1024): warning C4244: '인수' : 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1025): warning C4244: '인수' : 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1025): warning C4244: '인수' : 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1034): warning C4244: '인수' : 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1034): warning C4244: '인수' : 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1041): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1118): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1150): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1163): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1191): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1198): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1198): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'PlayerMovingStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1232): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ingamescene.h(1243): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainapplication.cpp(102): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainapplication.cpp(127): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainapplication.cpp(132): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainapplication.cpp(138): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainapplication.cpp(142): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainapplication.cpp(146): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\mainapplication.cpp(150): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+  Init Direct3D.vcxproj -> C:\Users\pc\Desktop\examplecods\DIRECTX\mainApplication\Init Direct3D\Debug\Init Direct3D.exe

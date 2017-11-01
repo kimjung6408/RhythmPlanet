@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{6a885e4d-e075-461e-bfae-f0cc088d207b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFiles">
+      <UniqueIdentifier>{31169a0d-d5a6-4068-b438-4688da1587b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VirtualShaderClass">
+      <UniqueIdentifier>{f5370c61-6211-42e5-a176-1769987353d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skybox">
+      <UniqueIdentifier>{34dd2497-67fc-4fa5-b660-1c46f978cba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{7beb4cba-4692-4c80-b003-3e76ee0a4b92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StaticData">
+      <UniqueIdentifier>{79b029e3-249a-4511-8d06-c2bc0998be9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StaticData\DeviceContext">
+      <UniqueIdentifier>{9de4d88e-e9a3-40e9-bbaf-409a8838aa26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StaticData\Utility">
+      <UniqueIdentifier>{b22b841f-ef55-4ec5-8905-5a5de2fed8bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFiles\Skybox">
+      <UniqueIdentifier>{cdc3e0d8-95d4-4bb3-9dac-e7f6ee8518f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFiles\SamplerState">
+      <UniqueIdentifier>{3af7e4ec-2eac-4ad3-8191-e36719db9d07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{9aa0ddf4-a927-40a0-bd6f-8a9636cbc069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{8c96ec44-f6fa-4690-9aa0-4dd8ccdba68b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particles">
+      <UniqueIdentifier>{b4710030-30e6-4290-a8ab-fb2e3cd9225f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFiles\Particle">
+      <UniqueIdentifier>{102d9b77-627b-495c-913a-3612dd1f2ff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{9ac164f8-b9d1-480f-9193-653c8b1a2a74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wall">
+      <UniqueIdentifier>{1bb07147-84e3-40f0-ada9-bc7047acaf31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{0435560e-d33d-4677-9aea-9ee7d39b5a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Music">
+      <UniqueIdentifier>{09a7bedd-7857-40a1-a8c1-fcb26d9061bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{9dbe6904-682b-4e96-b43f-08dbd63adbe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Main">
+      <UniqueIdentifier>{3feda4d1-5cb8-4ceb-a3fc-88a9e28f4f67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Main\Background">
+      <UniqueIdentifier>{0f143855-e3b4-4abc-9f0b-b88f10ebbe08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SelectMusic">
+      <UniqueIdentifier>{6600d189-1893-40e0-9c41-3586e873fdb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Option">
+      <UniqueIdentifier>{104a221f-f04a-4748-a294-45d69b942952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{592e75d2-cca4-411f-bab4-7015652f8d2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Ingame">
+      <UniqueIdentifier>{f39f1b1f-034f-4165-84cb-2193aca84b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\ResultScene">
+      <UniqueIdentifier>{8392a28a-e320-4ff7-b1b5-8c0fb6aca2da}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Common\d3dApp.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\d3dUtil.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\GameTimer.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryGenerator.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="LightHelper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="MathHelper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMgr.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Waves.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStates.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="MainApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Common\d3dApp.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\d3dUtil.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\GameTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryGenerator.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="LightHelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMgr.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Waves.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStates.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="globalDeviceContext.h">
+      <Filter>StaticData\DeviceContext</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderProgram.h">
+      <Filter>VirtualShaderClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyboxShader.h">
+      <Filter>Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.hpp">
+      <Filter>StaticData\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleEmitter.h">
+      <Filter>Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleManager.h">
+      <Filter>Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleRenderingSystem.h">
+      <Filter>Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleShader.h">
+      <Filter>Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleTexture.h">
+      <Filter>Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIShader.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Music</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScene.h">
+      <Filter>Scene\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundShader.h">
+      <Filter>Scene\Main\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectMusicScene.h">
+      <Filter>Scene\SelectMusic</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionScene.h">
+      <Filter>Scene\Option</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleShader.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundaryBox.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityShader.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameScene.h">
+      <Filter>Scene\Ingame</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>Scene\ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelShader.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreSystem.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CautionMark.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationShader.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SideBar.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FX\color.fx">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="skyboxShaderFile.hlsl">
+      <Filter>ShaderFiles\Skybox</Filter>
+    </None>
+    <None Include="samplerState.hlsl">
+      <Filter>ShaderFiles\SamplerState</Filter>
+    </None>
+    <None Include="BoxShaderFile.hlsl">
+      <Filter>ShaderFiles</Filter>
+    </None>
+    <None Include="triangleShader.hlsl">
+      <Filter>ShaderFiles</Filter>
+    </None>
+    <None Include="ParticleShaderFile.hlsl">
+      <Filter>ShaderFiles\Particle</Filter>
+    </None>
+    <None Include="Lighting.hlsl">
+      <Filter>ShaderFiles</Filter>
+    </None>
+    <None Include="WallShaderFile.hlsl">
+      <Filter>Entity</Filter>
+    </None>
+    <None Include="MainBGShader.hlsl">
+      <Filter>Scene\Main\Background</Filter>
+    </None>
+    <None Include="GUIShaderFile.hlsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="TriangleShaderFile.hlsl">
+      <Filter>Model</Filter>
+    </None>
+    <None Include="EntityShaderFile.hlsl">
+      <Filter>Entity</Filter>
+    </None>
+    <None Include="ModelShaderFile.hlsl">
+      <Filter>Entity</Filter>
+    </None>
+    <None Include="AnimationShaderFile.hlsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="FontShaderFile.hlsl">
+      <Filter>Font</Filter>
+    </None>
+    <None Include="CautionShader.hlsl">
+      <Filter>Entity</Filter>
+    </None>
+    <None Include="RhythmPlanet\Note_pink.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Note_pink.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Init Direct3D.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

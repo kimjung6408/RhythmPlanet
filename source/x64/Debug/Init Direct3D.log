@@ -1,0 +1,25 @@
+﻿  MainApplication.cpp
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\Utils.hpp(158): warning C4267: '=' : 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\Skybox.h(45): warning C4267: '=' : 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\Box.h(47): warning C4267: '=' : 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ParticleEmitter.h(156): warning C4244: '초기화 중' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\BallShader.h(38): warning C4101: 't' :참조되지 않은 지역 변수입니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\Ball.h(34): warning C4267: '=' : 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\MainScene.h(197): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\MainScene.h(208): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\MainScene.h(210): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\MainScene.h(283): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\MainScene.h(289): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\MainScene.h(292): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\MainScene.h(313): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\SelectMusicScene.h(16): warning C4005: 'PRESS_TIME_DIFFERENCE' : 매크로 재정의
+          c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\MainScene.h(15) : 'PRESS_TIME_DIFFERENCE'의 이전 정의를 참조하십시오.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\SelectMusicScene.h(214): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\SelectMusicScene.h(222): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\SelectMusicScene.h(224): warning C4305: '인수' : 'double'에서 'float'(으)로 잘립니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\SelectMusicScene.h(301): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\SelectMusicScene.h(310): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\SelectMusicScene.h(329): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ResultScene.h(46): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\ResultScene.h(52): warning C4482: 비표준 확장이 사용되었습니다. 정규화된 이름에 'SceneStatus' 열거형을 사용했습니다.
+c:\users\pc\desktop\examplecods\directx\mainapplication\init direct3d\SoundSystem.h(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'fmod.h': No such file or directory
