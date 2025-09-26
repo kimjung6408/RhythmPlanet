@@ -167,6 +167,10 @@
     <ClCompile Include="..\..\Common\GameTimer.cpp" />
     <ClCompile Include="MainApplication.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="BoundaryBox.cpp" />
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="CautionMark.cpp" />
     <ClCompile Include="Effects.cpp" />
     <ClCompile Include="GeometryGenerator.cpp" />
     <ClCompile Include="LightHelper.cpp" />
