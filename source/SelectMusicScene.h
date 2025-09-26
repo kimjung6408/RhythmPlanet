@@ -41,9 +41,9 @@ struct MusicItem
 			txtTitle = Text(XMFLOAT2(guiPos.x + 0.1f, guiPos.y + 0.5f), XMFLOAT2(0.05f, 0.05f), pMusic->GetTitle());
 			txtArtist = Text(XMFLOAT2(guiPos.x + 0.1f, guiPos.y + 0.2f), XMFLOAT2(0.1f, 0.1f), pMusic->GetArtist());
 			txtBPM = Text(XMFLOAT2(-0.65f, 0.4f), XMFLOAT2(0.07f, 0.07f), pMusic->GetstrBPM());
-			txtTitle.SetCharacterGap(0.05f);
-			txtArtist.SetCharacterGap(0.09f);
-			txtBPM.SetCharacterGap(0.09f);
+			txtTitle.SetCharacterGap(0.0f);
+			txtArtist.SetCharacterGap(0.0f);
+			txtBPM.SetCharacterGap(0.0f);
 		}
 	}
 };
@@ -80,7 +80,7 @@ private:
 	float scaleTimeSum;
 	vector<GUI> ImageGUIs;
 	deque<MusicItem*> MusicItems;
-	bool MusicScrollMove; //»ç¿ëÀÚ°¡ »óÇÏ ¹æÇâÅ°¸¦ ´­·¶À» ¶§
+	bool MusicScrollMove; //ì‚¬ìš©ìê°€ ìƒí•˜ ë°©í–¥í‚¤ë¥¼ ëˆŒë €ì„ ë•Œ
 	GUI HealthBar;
 	GUI StaminaBar;
 
@@ -135,7 +135,7 @@ private:
 			}
 		}
 
-		//À½¾Ç ½ºÅ©·Ñ·¯ ºÎºĞ ¾÷µ¥ÀÌÆ®
+		//ìŒì•… ìŠ¤í¬ë¡¤ëŸ¬ ë¶€ë¶„ ì—…ë°ì´íŠ¸
 		for (int i = 0; i < MusicItems.size(); i++)
 		{
 			float yPos;
@@ -172,7 +172,7 @@ private:
 		spinCircle3.Update(dt);
 
 
-		//¿À¹öÇÃ·Î¿ì, ¾ğ´õÇÃ·Î¿ì ¹æÁö.
+		//ì˜¤ë²„í”Œë¡œìš°, ì–¸ë”í”Œë¡œìš° ë°©ì§€.
 		if (uvOffsetGrid.y >= 1.0f)
 		{
 			uvOffsetGrid.y -= 1.0f;
@@ -227,17 +227,17 @@ private:
 		Global::Context()->IASetInputLayout(backgroundShader->InputLayout());
 		Global::Context()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		//VertexBuffer¸¦ ¼³Á¤ÇÑ´Ù.
+		//VertexBufferë¥¼ ì„¤ì •í•œë‹¤.
 		UINT stride = sizeof(XMFLOAT2);
 		UINT offset = 0;
 		ID3D11Buffer* mVB = backgroundShader->VB();
 		Global::Context()->IASetVertexBuffers(0, 1, &mVB, &stride, &offset);
 
-		//Context¿¡ shaderÀÇ technique pass¸¦ ¿¬°áÇÑ´Ù.
+		//Contextì— shaderì˜ technique passë¥¼ ì—°ê²°í•œë‹¤.
 		ID3DX11EffectTechnique* tech = backgroundShader->getTech();
 		tech->GetPassByIndex(0)->Apply(0, Global::Context());
 
-		//¿©·¯°¡Áö factorµéÀ» ·ÎµùÇÑ´Ù.
+		//ì—¬ëŸ¬ê°€ì§€ factorë“¤ì„ ë¡œë”©í•œë‹¤.
 		backgroundShader->LoadBG(SRV_BG);
 		backgroundShader->LoadGridImage(SRV_grid);
 		backgroundShader->Load_uvOffsetBG(uvOffsetBG);
@@ -274,7 +274,7 @@ public:
 		introImage = NULL;
 
 		nextScene = SceneStatus::SELECT_MUSIC;
-		//streak, triangleÃâ·Â Àü¿ë Ä«¸Ş¶ó.
+		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
 		cam = new Camera();
 		cam->LookAt(XMFLOAT3(0, 0, -10), XMFLOAT3(0, 0, 0), XMFLOAT3(0, 1, 0));
 		cam->UpdateViewMatrix();
@@ -385,8 +385,8 @@ public:
 		}
 		else
 		{
-			//0x8000°ú and ¿¬»êÀ» ÇØÁÖ¸é, ¹Ù·Î ÇöÀç ½ÃÁ¡¿¡ ´­·È´ÂÁö¸¦ Ã¼Å©ÇØÁØ´Ù.
-			//0x8000°ú and ¿¬»êÀ» ÇÏÁö ¾ÊÀ¸¸é, ´©ÀûµÈ escÀÔ·Â°ªÀ» ¹Ş¾Æ¼­, °ú°Å¿¡ ´­·È¾ú´ÂÁö±îÁö Ã¼Å©ÇÑ´Ù.
+			//0x8000ê³¼ and ì—°ì‚°ì„ í•´ì£¼ë©´, ë°”ë¡œ í˜„ì¬ ì‹œì ì— ëˆŒë ¸ëŠ”ì§€ë¥¼ ì²´í¬í•´ì¤€ë‹¤.
+			//0x8000ê³¼ and ì—°ì‚°ì„ í•˜ì§€ ì•Šìœ¼ë©´, ëˆ„ì ëœ escì…ë ¥ê°’ì„ ë°›ì•„ì„œ, ê³¼ê±°ì— ëˆŒë ¸ì—ˆëŠ”ì§€ê¹Œì§€ ì²´í¬í•œë‹¤.
 			if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)
 			{
 				soundSystem->PlaySoundEffect(SOUND_PREV_SCENE);
@@ -396,13 +396,13 @@ public:
 				nextScene=SceneStatus::MAIN;
 			}
 
-			//Enter Å°°¡ ´­¸®¸é
+			//Enter í‚¤ê°€ ëˆŒë¦¬ë©´
 			if (GetAsyncKeyState(VK_RETURN)&0x8000)
 			{
 				soundSystem->PlaySoundEffect(SOUND_SELECT);
 				soundSystem->StopMusic();
 				MusicPlay = false;
-				//ÇöÀç ¼±ÅÃÇÑ °îÀ» ÇÃ·¹ÀÌÇÏ´Â, ÇÃ·¹ÀÌ Ã¢À¸·Î ÀÌµ¿ÇÑ´Ù.
+				//í˜„ì¬ ì„ íƒí•œ ê³¡ì„ í”Œë ˆì´í•˜ëŠ”, í”Œë ˆì´ ì°½ìœ¼ë¡œ ì´ë™í•œë‹¤.
 				KeyPressed = true;
 				FadeScreen = FADE_OUT;
 				nextScene=SceneStatus::INGAME;
@@ -424,8 +424,8 @@ public:
 
 				MusicItem* tmpItem;
 
-				//KeyDirectionÀÌ 1ÀÌ¸é À§¿¡ ÀÖ´Â °ÍÀ» ¾Æ·¡·Î °¡Á®¿À°Ô µÈ´Ù. µû¶ó¼­, ¸Ç ¾Æ·¡¿¡ ÀÖ´Â °ÍÀ» ¸Ç À§¿¡ ³Ö°í Á¤º¸¸¦ °»½ÅÇØÁà¾ß ÇÑ´Ù.
-				//KeyDirectionÀÌ -1ÀÌ¸é ¾Æ·¡ ÀÖ´Â °ÍÀ» À§·Î °¡Á®¿À°Ô µÈ´Ù.
+				//KeyDirectionì´ 1ì´ë©´ ìœ„ì— ìˆëŠ” ê²ƒì„ ì•„ë˜ë¡œ ê°€ì ¸ì˜¤ê²Œ ëœë‹¤. ë”°ë¼ì„œ, ë§¨ ì•„ë˜ì— ìˆëŠ” ê²ƒì„ ë§¨ ìœ„ì— ë„£ê³  ì •ë³´ë¥¼ ê°±ì‹ í•´ì¤˜ì•¼ í•œë‹¤.
+				//KeyDirectionì´ -1ì´ë©´ ì•„ë˜ ìˆëŠ” ê²ƒì„ ìœ„ë¡œ ê°€ì ¸ì˜¤ê²Œ ëœë‹¤.
 					tmpItem = MusicItems.back();
 					int currentMusicIndex = Global::GetCurrentMusicIndex();
 					int frontMusicIndex = ((currentMusicIndex - 7) + 7 * Global::GetNumOfSongs()) % Global::GetNumOfSongs();
