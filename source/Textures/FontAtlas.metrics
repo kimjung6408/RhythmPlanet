@@ -1,0 +1,92 @@
+# Font metrics describing logical spacing for FontAtlas.png
+textureWidth=1024
+textureHeight=1024
+cellWidth=64
+cellHeight=64
+lineHeight=64
+baseline=52
+tracking=4
+
+# Space and punctuation adjustments
+char id=32 xadvance=22
+char id=44 xadvance=30 yoffset=16
+char id=45 xadvance=48
+char id=46 xadvance=26 yoffset=16
+char id=58 xadvance=30 yoffset=16
+char id=59 xadvance=32 yoffset=12
+
+# Digits
+char id=48 xadvance=60
+char id=49 xadvance=42
+char id=50 xadvance=58
+char id=51 xadvance=58
+char id=52 xadvance=60
+char id=53 xadvance=58
+char id=54 xadvance=60
+char id=55 xadvance=54
+char id=56 xadvance=60
+char id=57 xadvance=60
+
+# Upper-case characters with tighter tracking
+char id=65 xadvance=64
+char id=66 xadvance=60
+char id=67 xadvance=64
+char id=68 xadvance=66
+char id=69 xadvance=58
+char id=70 xadvance=56
+char id=71 xadvance=68
+char id=72 xadvance=68
+char id=73 xadvance=46
+char id=74 xadvance=52
+char id=75 xadvance=64
+char id=76 xadvance=56
+char id=77 xadvance=76
+char id=78 xadvance=68
+char id=79 xadvance=70
+char id=80 xadvance=58
+char id=81 xadvance=72
+char id=82 xadvance=62
+char id=83 xadvance=60
+char id=84 xadvance=60
+char id=85 xadvance=68
+char id=86 xadvance=64
+char id=87 xadvance=80
+char id=88 xadvance=64
+char id=89 xadvance=62
+char id=90 xadvance=60
+
+# Lower-case characters
+char id=97 xadvance=54
+char id=98 xadvance=56
+char id=99 xadvance=50
+char id=100 xadvance=56
+char id=101 xadvance=54
+char id=102 xadvance=38
+char id=103 xadvance=56 yoffset=-6
+char id=104 xadvance=56
+char id=105 xadvance=28
+char id=106 xadvance=32 yoffset=-6
+char id=107 xadvance=54
+char id=108 xadvance=28
+char id=109 xadvance=82
+char id=110 xadvance=56
+char id=111 xadvance=54
+char id=112 xadvance=56 yoffset=12
+char id=113 xadvance=56 yoffset=12
+char id=114 xadvance=40
+char id=115 xadvance=50
+char id=116 xadvance=40
+char id=117 xadvance=56
+char id=118 xadvance=52
+char id=119 xadvance=74
+char id=120 xadvance=52
+char id=121 xadvance=52 yoffset=12
+char id=122 xadvance=52
+
+# Symbols often used in rhythm game UI
+char id=37 xadvance=72
+char id=47 xadvance=48
+char id=91 xadvance=34
+char id=93 xadvance=34
+char id=95 xadvance=60
+char id=126 xadvance=66

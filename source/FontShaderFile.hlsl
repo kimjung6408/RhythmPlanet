@@ -24,6 +24,7 @@ matrix matWorld;
 float fadeFactor;
 float Alpha;
 float2 UVOffset;
+float2 UVScale;
 }
 
 struct VertexIn
@@ -51,8 +52,8 @@ VertexOut VS(VertexIn vin){
 
 float4 PS(VertexOut pin) :SV_Target
 {
-	float fontscale=1.0f/16.0f;
-	float4 Color= Image.Sample(samLinear, pin.TexCoord*fontscale+UVOffset);
+    float2 scaledTexCoord = pin.TexCoord * UVScale + UVOffset;
+    float4 Color = Image.Sample(samLinear, scaledTexCoord);
 	Color.a*=Alpha;
 	Color*=(0.5f+abs(0.5f-fadeFactor));
 	return Color;

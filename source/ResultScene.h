@@ -50,7 +50,7 @@ private:
 	bool KeyPressed;
 	float pressTimeSum;
 
-	//FadeAlpha-> 0 : È­¸éÀÌ ±î¸ÄÁö ¾ÊÀ½ 1:È­¸éÀÌ ±î¸Ä½¿.
+	//FadeAlpha-> 0 : í™”ë©´ì´ ê¹Œë§£ì§€ ì•ŠìŒ 1:í™”ë©´ì´ ê¹Œë§£ìŠ´.
 	float FadeAlpha;
 	int FadeScreen;
 
@@ -99,7 +99,7 @@ private:
 		uvOffsetBG.y += dt*BG_VERTICAL_VELOCITY;
 
 
-		//¿À¹öÇÃ·Î¿ì, ¾ð´õÇÃ·Î¿ì ¹æÁö.
+		//ì˜¤ë²„í”Œë¡œìš°, ì–¸ë”í”Œë¡œìš° ë°©ì§€.
 		if (uvOffsetGrid.y >= 1.0f)
 		{
 			uvOffsetGrid.y -= 1.0f;
@@ -118,17 +118,17 @@ private:
 		Global::Context()->IASetInputLayout(backgroundShader->InputLayout());
 		Global::Context()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		//VertexBuffer¸¦ ¼³Á¤ÇÑ´Ù.
+		//VertexBufferë¥¼ ì„¤ì •í•œë‹¤.
 		UINT stride = sizeof(XMFLOAT2);
 		UINT offset = 0;
 		ID3D11Buffer* mVB = backgroundShader->VB();
 		Global::Context()->IASetVertexBuffers(0, 1, &mVB, &stride, &offset);
 
-		//Context¿¡ shaderÀÇ technique pass¸¦ ¿¬°áÇÑ´Ù.
+		//Contextì— shaderì˜ technique passë¥¼ ì—°ê²°í•œë‹¤.
 		ID3DX11EffectTechnique* tech = backgroundShader->getTech();
 		tech->GetPassByIndex(0)->Apply(0, Global::Context());
 
-		//¿©·¯°¡Áö factorµéÀ» ·ÎµùÇÑ´Ù.
+		//ì—¬ëŸ¬ê°€ì§€ factorë“¤ì„ ë¡œë”©í•œë‹¤.
 		backgroundShader->LoadBG(SRV_BG);
 		backgroundShader->LoadGridImage(SRV_grid);
 		backgroundShader->Load_uvOffsetBG(uvOffsetBG);
@@ -163,10 +163,10 @@ public:
 		pressTimeSum = 0.0f;
 		FadeAlpha = 1.0f;
 
-		//streakÃâ·Â Àü¿ë Ä«¸Þ¶ó.
-		cam = new Camera();
-		cam->LookAt(XMFLOAT3(0, 0, -10), XMFLOAT3(0, 0, 0), XMFLOAT3(0, 1, 0));
-		cam->UpdateViewMatrix();
+		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
+		SCOREstring.SetCharacterGap(0.0f);
+		score.SetCharacterGap(0.0f);
+		SongTitleString.SetCharacterGap(0.0f);
 
 		backgroundShader = new BackgroundShader(L"MainBGShader.hlsl");
 		particleTexture = new ParticleTexture(L"Textures/streak.jpg", 1);

@@ -51,7 +51,7 @@ using namespace std;
 
 #define SIDEBAR_VELOCITY 0.01389f
 
-//°øÁß 4°³ÀÇ ÁöÁ¤µÈ À§Ä¡ Áß¿¡¼­ ÀÓÀÇ·Î 1°³¸¦ ÅÃÇÏ¿© ¸ñÇ¥ÁöÁ¡ x,y¿¡ ¶³¾îÁö°Ô ÇÑ´Ù.
+//ê³µì¤‘ 4ê°œì˜ ì§€ì •ëœ ìœ„ì¹˜ ì¤‘ì—ì„œ ì„ì˜ë¡œ 1ê°œë¥¼ íƒí•˜ì—¬ ëª©í‘œì§€ì  x,yì— ë–¨ì–´ì§€ê²Œ í•œë‹¤.
 const XMFLOAT3 GenPosition[4]
 = {
 	XMFLOAT3(-4.0f,5.0f, -3.0f),
@@ -73,7 +73,7 @@ private:
 	Text* txtScore;
 	SoundSystem* soundSystem;
 	XMFLOAT3 lightPosition;
-	//½¦ÀÌ´õ ¼±¾ğ
+	//ì‰ì´ë” ì„ ì–¸
 	EntityShader* UpperBallShader;
 	EntityShader* UnderBallShader;
 	EntityShader* FallBallShader;
@@ -89,7 +89,7 @@ private:
 
 	Model* model;
 
-	//°ÔÀÓ¿¡ È°·ÂÀ» ºÒ¾î³Ö¾îÁÙ ÀÌº¥Æ®µé!
+	//ê²Œì„ì— í™œë ¥ì„ ë¶ˆì–´ë„£ì–´ì¤„ ì´ë²¤íŠ¸ë“¤!
 	deque<FloorEvent> FloorEvents;
 	deque<FallEvent> FallEvents;
 	deque<SideEvent> SideEvents;
@@ -98,7 +98,7 @@ private:
 	deque<CautionFallEvent> CautionFallEvents;
 
 
-	//¿ÀºêÁ§Æ® ¼±¾ğ
+	//ì˜¤ë¸Œì íŠ¸ ì„ ì–¸
 	vector<Ball> UpperBalls;
 	vector<Ball> UnderBalls;
 	vector<Ball> FallBalls;
@@ -173,7 +173,7 @@ private:
 		ProgressPointer.SetRotation(XMFLOAT3(0, 0, -8.0f*MathHelper::Pi*TextureAnimationFactor));
 
 
-		//ÇöÀçÀÇ HP, StaminaÀÇ °ª¿¡ µû¶ó, HP Bar, Stamina BarÀÇ °ÔÀÌÁö »óÅÂ¸¦ Linear Interpolation ÇÑ´Ù.
+		//í˜„ì¬ì˜ HP, Staminaì˜ ê°’ì— ë”°ë¼, HP Bar, Stamina Barì˜ ê²Œì´ì§€ ìƒíƒœë¥¼ Linear Interpolation í•œë‹¤.
 		float CurrentHPRatio = player.GetHP() / MAX_HP;
 		float CurrentStaminaRatio = player.GetStamina() / MAX_STAMINA;
 		float HP_xPos = CurrentHPRatio*HPSTAMINA_MAX_POSITION + (1 - CurrentHPRatio)*HPSTAMINA_ZERO_POSITION;
@@ -215,11 +215,11 @@ private:
 		}
 	}
 
-	//GameTimeSumÀ» ÀÌ¿ëÇÏ¿© ÀÌº¥Æ®¸¦ ¹ß»ı½ÃÅ²´Ù.
+	//GameTimeSumì„ ì´ìš©í•˜ì—¬ ì´ë²¤íŠ¸ë¥¼ ë°œìƒì‹œí‚¨ë‹¤.
 	//
 
-	//side : ¿ŞÂÊÀÎÁö, ¾ÕÂÊ º®¸éÀÎÁö, ¿À¸¥ÂÊÀÎÁö
-	//subtype : º®¸é À§¿¡¼­ ³ª¿À´ÂÁö, ¾Æ·¡¼­ ³ª¿À´ÂÁö, Æ¢¾î³ª¿Ô´Ù°¡ µé¾î°¡´Â °ÍÀÎÁö
+	//side : ì™¼ìª½ì¸ì§€, ì•ìª½ ë²½ë©´ì¸ì§€, ì˜¤ë¥¸ìª½ì¸ì§€
+	//subtype : ë²½ë©´ ìœ„ì—ì„œ ë‚˜ì˜¤ëŠ”ì§€, ì•„ë˜ì„œ ë‚˜ì˜¤ëŠ”ì§€, íŠ€ì–´ë‚˜ì™”ë‹¤ê°€ ë“¤ì–´ê°€ëŠ” ê²ƒì¸ì§€
 	//place :1,2,3,4,5,6,7
 	void GenerateSideObject(int Side, int Subtype, int place)
 	{		
@@ -343,12 +343,12 @@ private:
 		switch (Size)
 		{
 
-		//Æ¢¾î³ª¿Ô´Ù°¡ µé¾î°¡´Â ¸·´ë±â¸¦ »ı¼ºÇÑ´Ù.
+		//íŠ€ì–´ë‚˜ì™”ë‹¤ê°€ ë“¤ì–´ê°€ëŠ” ë§‰ëŒ€ê¸°ë¥¼ ìƒì„±í•œë‹¤.
 		case FLOORSIZE_SMALL:
 			Sidebars.push_back(Bar(XMFLOAT3(-4.0f+(float)x, -1, -4.0f + (float)y), XMFLOAT3(1.0f, 2.0f, 0.99f), SIDEBAR_VELOCITY*BPM, XMFLOAT3(0, 1, 0), 60.0 / BPM));
 			break;
 
-		//Æø¹ßÃ¼¸¦ »ı¼ºÇÑ´Ù.
+		//í­ë°œì²´ë¥¼ ìƒì„±í•œë‹¤.
 		case FLOORSIZE_NORMAL:
 			Bombs.push_back(Bar(XMFLOAT3(-4.0f + (float)x, 0, -4.0f + (float)y), XMFLOAT3(3.3f, 2.0f, 3.5f), 20.0f*15.0 / BPM, XMFLOAT3(0, 0, 0), 20.0f*15.0 / BPM));
 			SparkEmitter->generateParticles(XMFLOAT3(-4.0f + (float)x+1, 1, -4.0f + (float)y+1), 0.1f);
@@ -364,12 +364,12 @@ private:
 		switch (Size)
 		{
 
-			//Æ¢¾î³ª¿Ô´Ù°¡ µé¾î°¡´Â ¸·´ë±âÀÇ °æ°í¸¶Å© (¹«Áö°³ ¿ø) »ı¼ºÇÑ´Ù.
+			//íŠ€ì–´ë‚˜ì™”ë‹¤ê°€ ë“¤ì–´ê°€ëŠ” ë§‰ëŒ€ê¸°ì˜ ê²½ê³ ë§ˆí¬ (ë¬´ì§€ê°œ ì›) ìƒì„±í•œë‹¤.
 		case FLOORSIZE_SMALL:
 			FloorBarCautionMarks.push_back(CautionMark(BPM, XMFLOAT3(-4.0f+(float)x, -1.3f, -4.0f+(float)y), XMFLOAT3(0, 1, 0)));
 			break;
 
-			//Æø¹ßÃ¼¸¦ »ı¼ºÇÑ´Ù.
+			//í­ë°œì²´ë¥¼ ìƒì„±í•œë‹¤.
 		case FLOORSIZE_NORMAL:
 			FloorBombCautionMarks.push_back(CautionMark(BPM, XMFLOAT3(-4.0f + (float)x, -0.1f, -4.0f + (float)y), XMFLOAT3(0, 1, 0)));
 			break;
@@ -544,11 +544,11 @@ private:
 		
 		
 
-		//Floor Æø¹ßÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+		//Floor í­ë°œì„ ì—…ë°ì´íŠ¸í•œë‹¤.
 
 
 
-		//2D¾Ö´Ï¸ŞÀÌ¼Ç ¹× ÀÌÆåÆ®¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+		//2Dì• ë‹ˆë©”ì´ì…˜ ë° ì´í™íŠ¸ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
 		/*
 		
 		*/
@@ -623,7 +623,7 @@ private:
 	}
 
 
-	//ÇÃ·¹ÀÌ¾î°¡ »ì¾ÒÀ¸¸é true, Á×¾úÀ¸¸é false¸¦ return
+	//í”Œë ˆì´ì–´ê°€ ì‚´ì•˜ìœ¼ë©´ true, ì£½ì—ˆìœ¼ë©´ falseë¥¼ return
 	bool ProcessCollision()
 	{
 		CheckObjectOut();
@@ -771,8 +771,8 @@ private:
 		return true;
 	}
 
-	//¿ÀºêÁ§Æ®°¡ ¹Ù±ù¿¡ ³ª°¬´ÂÁö °Ë»çÇÑ´Ù. ¹Ù±ù¿¡ ³ª°¬À¸¸é »èÁ¦ÇÑ´Ù.
-	//ÇöÀç ÇØ´ç ¿ÀºêÁ§Æ® : ball
+	//ì˜¤ë¸Œì íŠ¸ê°€ ë°”ê¹¥ì— ë‚˜ê°”ëŠ”ì§€ ê²€ì‚¬í•œë‹¤. ë°”ê¹¥ì— ë‚˜ê°”ìœ¼ë©´ ì‚­ì œí•œë‹¤.
+	//í˜„ì¬ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ : ball
 
 	void CheckObjectOut()
 	{
@@ -1039,8 +1039,8 @@ public:
 		FadeScreen = FADE_IN;
 
 		nextScene = SceneStatus::SELECT_MUSIC;
-		//streak, triangleÃâ·Â Àü¿ë Ä«¸Ş¶ó.
-		cam = new Camera();
+		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
+		txtScore->SetCharacterGap(0.0f);
 		cam->LookAt(XMFLOAT3(-0.5, 10, -13.5f), XMFLOAT3(-0.5, 0, 0), XMFLOAT3(0, 1, 0));
 		cam->SetLens(MathHelper::Pi/6.0f, 640.0f / 480.0f, 0.001f, 1000.0f);
 		cam->SetPosition(XMFLOAT3(-0.5f, 10.8f, -13.5f));
@@ -1139,11 +1139,11 @@ public:
 
 	SceneStatus Update(float dt)
 	{
-		//°ÔÀÓÀÌ ³¡³µ´ÂÁö °Ë»çÇÑ´Ù.
+		//ê²Œì„ì´ ëë‚¬ëŠ”ì§€ ê²€ì‚¬í•œë‹¤.
 		if (GameTimeSum >= 2.0f+(float)SongTotalLength / 1000.0f)
 		{
-			//°á°ú µ¥ÀÌÅÍ¸¦ ±Û·Î¹ú Å¬·¡½º¿¡ ÀúÀåÇÑ´Ù.
-			//Á¡¼ö, Ãæµ¹È½¼ö, ¼º°ø Àü´Ş.
+			//ê²°ê³¼ ë°ì´í„°ë¥¼ ê¸€ë¡œë²Œ í´ë˜ìŠ¤ì— ì €ì¥í•œë‹¤.
+			//ì ìˆ˜, ì¶©ëŒíšŸìˆ˜, ì„±ê³µ ì „ë‹¬.
 			Global::SetScore(scoreSystem->GetScore());
 			Global::SetMusicClear(true);
 
@@ -1176,18 +1176,18 @@ public:
 			UpdateEvents();
 
 		//Collision Detection and processing
-		//ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀÌ 0º¸´Ù ÀÛ°Å³ª °°À¸¸é false¸¦ ¸®ÅÏÇÑ´Ù.
+		//í”Œë ˆì´ì–´ì˜ ì²´ë ¥ì´ 0ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìœ¼ë©´ falseë¥¼ ë¦¬í„´í•œë‹¤.
 		player.Update(dt);
 		UpdateGameObjects(dt);
 		bool PlayerAlive=ProcessCollision();
 
 		if (!PlayerAlive)
 		{
-			//Á¡¼ö¿Í ½ÇÆĞ¸¦ ±Û·Î¹ú Å¬·¡½º¿¡ Àü´ŞÇÑ´Ù.
+			//ì ìˆ˜ì™€ ì‹¤íŒ¨ë¥¼ ê¸€ë¡œë²Œ í´ë˜ìŠ¤ì— ì „ë‹¬í•œë‹¤.
 			Global::SetScore(scoreSystem->GetScore());
 			Global::SetMusicClear(false);
 
-			//Result Ã¢À» º¸¿©ÁØ´Ù.
+			//Result ì°½ì„ ë³´ì—¬ì¤€ë‹¤.
 			return SceneStatus::RESULT;
 		}
 
@@ -1218,8 +1218,8 @@ public:
 		}
 		else
 		{
-			//0x8000°ú and ¿¬»êÀ» ÇØÁÖ¸é, ¹Ù·Î ÇöÀç ½ÃÁ¡¿¡ ´­·È´ÂÁö¸¦ Ã¼Å©ÇØÁØ´Ù.
-			//0x8000°ú and ¿¬»êÀ» ÇÏÁö ¾ÊÀ¸¸é, ´©ÀûµÈ escÀÔ·Â°ªÀ» ¹Ş¾Æ¼­, °ú°Å¿¡ ´­·È¾ú´ÂÁö±îÁö Ã¼Å©ÇÑ´Ù.
+			//0x8000ê³¼ and ì—°ì‚°ì„ í•´ì£¼ë©´, ë°”ë¡œ í˜„ì¬ ì‹œì ì— ëˆŒë ¸ëŠ”ì§€ë¥¼ ì²´í¬í•´ì¤€ë‹¤.
+			//0x8000ê³¼ and ì—°ì‚°ì„ í•˜ì§€ ì•Šìœ¼ë©´, ëˆ„ì ëœ escì…ë ¥ê°’ì„ ë°›ì•„ì„œ, ê³¼ê±°ì— ëˆŒë ¸ì—ˆëŠ”ì§€ê¹Œì§€ ì²´í¬í•œë‹¤.
 			if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)
 			{
 				soundSystem->PlaySoundEffect(SOUND_PREV_SCENE);
