@@ -8,7 +8,7 @@ class BackgroundShader : public ShaderProgram
 private:
 	ID3D11InputLayout* mInputLayout;
 	ID3DX11EffectTechnique* mTech;
-	ID3D11Buffer* mVB; //»ç°¢ Æò¸é vertex Á¤º¸¸¦ ÀúÀåÇÒ ¹öÆÛ.
+	ID3D11Buffer* mVB; //ì‚¬ê° í‰ë©´ vertex ì •ë³´ë¥¼ ì €ìž¥í•  ë²„í¼.
 	ID3DX11EffectShaderResourceVariable* mBGTexture;
 	ID3DX11EffectShaderResourceVariable* mGridTexture;
 
@@ -17,7 +17,7 @@ private:
 
 
 private:
-	//initialize½Ã È£ÃâµÊ. c++ÄÚµå¿Í ½¦ÀÌ´õ¸¦ ¿¬°áÇÔ.
+	//initializeì‹œ í˜¸ì¶œë¨. c++ì½”ë“œì™€ ì‰ì´ë”ë¥¼ ì—°ê²°í•¨.
 	void getAllAttributeLocations()
 	{
 		mTech = Shader()->GetTechniqueByName("BGTech");
@@ -27,7 +27,7 @@ private:
 		mGridTexture = Shader()->GetVariableByName("gridImage")->AsShaderResource();
 	}
 
-	//input layout ¼³Á¤.
+	//input layout ì„¤ì •.
 	void setInputLayout()
 	{
 		D3D11_INPUT_ELEMENT_DESC temp1[1] =
@@ -45,7 +45,7 @@ public:
 		:ShaderProgram(ShaderFilePath), mVB(0), mInputLayout(0), mTech(0), mBGTexture(0), mGridTexture(0),m_uvOffset_BG(0),
 		m_uvOffset_Grid(0)
 	{
-		//Background°¡ ±×·ÁÁú
+		//Backgroundê°€ ê·¸ë ¤ì§ˆ
 		XMFLOAT2 v3(-1.0f, 1.0f);
 		XMFLOAT2 v2(-1.0f, -1.0f);
 		XMFLOAT2 v1(1.0f, 1.0f);
@@ -96,6 +96,12 @@ public:
 	void Load_uvOffsetGrid(XMFLOAT2 Grid_uvOffset)
 	{
 		m_uvOffset_Grid->SetRawValue(&Grid_uvOffset, 0, sizeof(XMFLOAT2));
+	}
+
+	~BackgroundShader()
+	{
+		ReleaseCOM(mInputLayout);
+		ReleaseCOM(mVB);
 	}
 
 	ID3D11Buffer* VB()

@@ -8,7 +8,7 @@ class AnimationShader : public ShaderProgram
 private:
 	ID3D11InputLayout* mInputLayout;
 	ID3DX11EffectTechnique* mTech;
-	ID3D11Buffer* mVB; //»ç°¢ Æò¸é vertex Á¤º¸¸¦ ÀúÀåÇÒ ¹öÆÛ.
+	ID3D11Buffer* mVB; //ì‚¬ê° í‰ë©´ vertex ì •ë³´ë¥¼ ì €ìž¥í•  ë²„í¼.
 	ID3DX11EffectShaderResourceVariable* mTexture;
 	ID3DX11EffectVariable* mFadeFactor;
 	ID3DX11EffectVariable* mAlpha;
@@ -21,7 +21,7 @@ private:
 	float numRow;
 
 private:
-	//initialize½Ã È£ÃâµÊ. c++ÄÚµå¿Í ½¦ÀÌ´õ¸¦ ¿¬°áÇÔ.
+	//initializeì‹œ í˜¸ì¶œë¨. c++ì½”ë“œì™€ ì‰ì´ë”ë¥¼ ì—°ê²°í•¨.
 	void getAllAttributeLocations()
 	{
 		mTech = Shader()->GetTechniqueByName("AnimTech");
@@ -34,7 +34,7 @@ private:
 		mColumn = Shader()->GetVariableByName("Column");
 	}
 
-	//input layout ¼³Á¤.
+	//input layout ì„¤ì •.
 	void setInputLayout()
 	{
 		D3D11_INPUT_ELEMENT_DESC temp1[1] =
@@ -52,7 +52,7 @@ public:
 		:ShaderProgram(ShaderFilePath), mVB(0), mInputLayout(0), mTech(0), mTexture(0), mWorld(0)
 	{
 
-		//Background°¡ ±×·ÁÁú
+		//Backgroundê°€ ê·¸ë ¤ì§ˆ
 		XMFLOAT2 v3(-1.0f, 1.0f);
 		XMFLOAT2 v2(-1.0f, -1.0f);
 		XMFLOAT2 v1(1.0f, 1.0f);
@@ -128,5 +128,6 @@ public:
 	~AnimationShader()
 	{
 		ReleaseCOM(mInputLayout);
+		ReleaseCOM(mVB);
 	}
 };

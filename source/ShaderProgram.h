@@ -3,8 +3,13 @@
 #include<string>
 using namespace std;
 
-//shaderµéÀÌ µ¿ÀÏÇÑ ÇüÅÂ¸¦ °®°Ô ÇÏ±â À§ÇÑ virtual Å¬·¡½º
-//shaderµéÀº ¹İµå½Ã ÀÌ°ÍÀ» »ó¼Ó¹Ş¾Æ¼­ ±¸ÇöÇØ¾ß ÇÔ.
+	virtual ~ShaderProgram()
+	{
+		ReleaseCOM(pEffectShader);
+	}
+
+};
+//shaderë“¤ì€ ë°˜ë“œì‹œ ì´ê²ƒì„ ìƒì†ë°›ì•„ì„œ êµ¬í˜„í•´ì•¼ í•¨.
 class ShaderProgram
 {
 private:
@@ -12,10 +17,10 @@ private:
 
 protected:
 
-	//shader¿Í attributeµéÀ» ¿¬°á
+	//shaderì™€ attributeë“¤ì„ ì—°ê²°
 	virtual void getAllAttributeLocations() = 0;
 
-	//input layoutÀ» ÀÛ¼ºÇÔ.
+	//input layoutì„ ì‘ì„±í•¨.
 	virtual void setInputLayout() = 0;
 public:
 	ShaderProgram(LPCWSTR FilePath)
