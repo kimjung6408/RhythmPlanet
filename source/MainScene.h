@@ -5,6 +5,8 @@
 #include"BackgroundShader.h"
 #include"Triangle.h"
 #include"SoundSystem.h"
+#include <memory>
+#include <wrl/client.h>
 #define MENU_SELECT_MUSIC 0
 #define MENU_OPTION 1
 #define MENU_EXIT 2
@@ -27,20 +29,20 @@ private:
 
 	int CurrentSelectMenu;
 	SceneStatus nextScene;
-	BackgroundShader* backgroundShader;
-	ID3D11ShaderResourceView* SRV_BG;
-	ID3D11ShaderResourceView* SRV_grid;
+	std::unique_ptr<BackgroundShader> backgroundShader;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV_BG;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV_grid;
 	XMFLOAT2 uvOffsetBG;
 	XMFLOAT2 uvOffsetGrid;
 
 	XMFLOAT2 MenuNormalScale;
 	XMFLOAT2 MenuCurrentScale;
 
-	ParticleEmitter* streakParticleEmitter;
-	ParticleShader* particleShader;
-	ParticleTexture* particleTexture;
+	std::unique_ptr<ParticleEmitter> streakParticleEmitter;
+	std::unique_ptr<ParticleShader> particleShader;
+	std::unique_ptr<ParticleTexture> particleTexture;
 
-	Camera* cam;
+	std::unique_ptr<Camera> cam;
 
 	//Sound* BackgroundSound;
 	//Sound* ScrollSound;
@@ -51,8 +53,8 @@ private:
 	float pressTimeSum;
 	float scaleTimeSum;
 
-	//FadeAlpha-> 0 : »≠∏È¿Ã ±Ó∏ƒ¡ˆ æ ¿Ω 1:»≠∏È¿Ã ±Ó∏ƒΩø.
-	float FadeAlpha;
+	std::unique_ptr<GUIShader> MenuGUIShader;
+	std::unique_ptr<TriangleShader> triangleShader;
 	int FadeScreen;
 
 	float logoAlpha;
@@ -93,7 +95,7 @@ private:
 
 			scaleTimeSum += dt/MENU_SCALE_ANIMATION_SLOW;
 			
-			//ø¿πˆ«√∑ŒøÏ πÊ¡ˆ.
+			//Ïò§Î≤ÑÌîåÎ°úÏö∞ Î∞©ÏßÄ.
 			if (scaleTimeSum >= 2.0f)
 				scaleTimeSum -= 1.0f;
 
@@ -144,7 +146,7 @@ private:
 		uvOffsetBG.y += dt*BG_VERTICAL_VELOCITY;
 
 
-		//ø¿πˆ«√∑ŒøÏ, æ¥ı«√∑ŒøÏ πÊ¡ˆ.
+		//Ïò§Î≤ÑÌîåÎ°úÏö∞, Ïñ∏ÎçîÌîåÎ°úÏö∞ Î∞©ÏßÄ.
 		if (uvOffsetGrid.y >= 1.0f)
 		{
 			uvOffsetGrid.y -= 1.0f;
@@ -168,27 +170,27 @@ private:
 		Global::Context()->IASetInputLayout(backgroundShader->InputLayout());
 		Global::Context()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		//VertexBuffer∏¶ º≥¡§«—¥Ÿ.
-		UINT stride = sizeof(XMFLOAT2);
-		UINT offset = 0;
-		ID3D11Buffer* mVB = backgroundShader->VB();
-		Global::Context()->IASetVertexBuffers(0, 1, &mVB, &stride, &offset);
+		backgroundShader->LoadBG(SRV_BG.Get());
+		backgroundShader->LoadGridImage(SRV_grid.Get());
+		spinCircle1.Render(MenuGUIShader.get());
+		spinCircle2.Render(MenuGUIShader.get());
+		spinCircle3.Render(MenuGUIShader.get());
 
-		//Contextø° shader¿« technique pass∏¶ ø¨∞·«—¥Ÿ.
-		ID3DX11EffectTechnique* tech = backgroundShader->getTech();
-		tech->GetPassByIndex(0)->Apply(0, Global::Context());
+		AlphaedLogo.Render(MenuGUIShader.get());
+		logo.Render(MenuGUIShader.get());
+			ImageMenuGUIs[i].Render(MenuGUIShader.get());
 
-		//ø©∑Ø∞°¡ˆ factorµÈ¿ª ∑Œµ˘«—¥Ÿ.
-		backgroundShader->LoadBG(SRV_BG);
-		backgroundShader->LoadGridImage(SRV_grid);
-		backgroundShader->Load_uvOffsetBG(uvOffsetBG);
-		backgroundShader->Load_uvOffsetGrid(uvOffsetGrid);
-
-
-		Global::Context()->Draw(6, 0);
-
-		Global::finishRender();
-	}
+		FadeBlack.Render(MenuGUIShader.get());
+			triangles[i].Render(*cam,triangleShader.get());
+		cam = std::make_unique<Camera>();
+		backgroundShader = std::make_unique<BackgroundShader>(L"MainBGShader.hlsl");
+		particleTexture = std::make_unique<ParticleTexture>(L"Textures/streak.jpg", 1);
+		streakParticleEmitter = std::make_unique<ParticleEmitter>(particleTexture.get(), XMFLOAT3(0, -1, 0), 19, 10.6f, 0.1, 1, XMFLOAT3(0.2f, 3.0f, 0));
+		particleShader = std::make_unique<ParticleShader>(L"ParticleShaderFile.hlsl");
+		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/bg.jpg", 0, 0, SRV_BG.ReleaseAndGetAddressOf(), 0));
+		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/grid.jpg", 0, 0, SRV_grid.ReleaseAndGetAddressOf(), 0));
+		MenuGUIShader = std::make_unique<GUIShader>(L"GUIShaderFile.hlsl");
+		triangleShader = std::make_unique<TriangleShader>(L"TriangleShaderFile.hlsl");
 
 	void RenderGUI()
 	{
@@ -222,7 +224,7 @@ public:
 		FadeAlpha = 1.0f;
 		logoAlpha = 0.4f;
 
-		//streak√‚∑¬ ¿¸øÎ ƒ´∏ﬁ∂Û.
+		//streakÏ∂úÎ†• Ï†ÑÏö© Ïπ¥Î©îÎùº.
 		cam = new Camera();
 		cam->LookAt(XMFLOAT3(0, 0, -10), XMFLOAT3(0, 0, 0), XMFLOAT3(0, 1, 0));
 		cam->UpdateViewMatrix();
@@ -299,7 +301,7 @@ public:
 		}
 		else
 		{
-			//Enter ≈∞∞° ¥≠∏Æ∏È
+			//Enter ÌÇ§Í∞Ä ÎàåÎ¶¨Î©¥
 			if (GetAsyncKeyState(VK_RETURN))
 			{
 				soundSystem->PlaySoundEffect(SOUND_SELECT);
@@ -328,20 +330,8 @@ public:
 				soundSystem->PlaySoundEffect(SOUND_MAIN_SCROLL);
 				scaleTimeSum = 0.7f;
 				KeyPressed = true;
-				//¿ß¬ ¿« ∏ﬁ¥∫∏¶ º±≈√.
-				CurrentSelectMenu = ((CurrentSelectMenu - 1) + 3) % 3;
-			}
-			else if (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_RIGHT))
-			{
-				soundSystem->PlaySoundEffect(SOUND_MAIN_SCROLL);
-				scaleTimeSum = 0.7f;
-				KeyPressed = true;
-				//æ∆∑°¬ ¿« ∏ﬁ¥∫∏¶ º±≈√
-				CurrentSelectMenu = (CurrentSelectMenu + 1) % 3;
-			}
-		}
-
-		return SceneStatus::MAIN;
+		ParticleManager::render(particleShader.get(), cam.get());
+	~MainScene() override = default;
 	}
 
 	virtual void Render()

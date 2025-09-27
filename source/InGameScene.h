@@ -24,6 +24,8 @@
 #include <fstream>
 #include<queue>
 #include<deque>
+#include <array>
+#include <memory>
 //#include"Model.h"
 using namespace std;
 #define PRESS_TIME_DIFFERENCE (4.0f)
@@ -68,26 +70,26 @@ private:
 	Player player;
 
 	Json::Value ObstacleData;
-	ScoreSystem* scoreSystem;
-	FontShader* fontShader;
-	Text* txtScore;
+	std::unique_ptr<ScoreSystem> scoreSystem;
+	std::unique_ptr<FontShader> fontShader;
+	std::unique_ptr<Text> txtScore;
 	SoundSystem* soundSystem;
 	XMFLOAT3 lightPosition;
 	//쉐이더 선언
-	EntityShader* UpperBallShader;
-	EntityShader* UnderBallShader;
-	EntityShader* FallBallShader;
-	EntityShader* BoxShader;
-	EntityShader* BarShader;
-	EntityShader* TileShader;
-	EntityShader* SideBallCautionShader;
-	EntityShader* SideBarCautionShader;
-	EntityShader* FloorBarCautionShader;
-	EntityShader* FloorBombCautionShader;
-	EntityShader* FallCautionShader;
-	ModelShader* modelShader;
+	std::unique_ptr<EntityShader> UpperBallShader;
+	std::unique_ptr<EntityShader> UnderBallShader;
+	std::unique_ptr<EntityShader> FallBallShader;
+	std::unique_ptr<EntityShader> BoxShader;
+	std::unique_ptr<EntityShader> BarShader;
+	std::unique_ptr<EntityShader> TileShader;
+	std::unique_ptr<EntityShader> SideBallCautionShader;
+	std::unique_ptr<EntityShader> SideBarCautionShader;
+	std::unique_ptr<EntityShader> FloorBarCautionShader;
+	std::unique_ptr<EntityShader> FloorBombCautionShader;
+	std::unique_ptr<EntityShader> FallCautionShader;
+	std::unique_ptr<ModelShader> modelShader;
 
-	Model* model;
+	std::unique_ptr<Model> model;
 
 	//게임에 활력을 불어넣어줄 이벤트들!
 	deque<FloorEvent> FloorEvents;
@@ -113,11 +115,11 @@ private:
 	vector<CautionMark> FloorBombCautionMarks;
 	vector<CautionMark> FallCautionMarks;
 
-	BoundaryBox* LeftBoxes[2][9];
-	BoundaryBox* FarBoxes[2][9];
-	BoundaryBox* RightBoxes[2][9];
-	BoundaryBox* tiles[10][9];
-	Camera* cam;
+	std::array<std::array<std::unique_ptr<BoundaryBox>, 9>, 2> LeftBoxes;
+	std::array<std::array<std::unique_ptr<BoundaryBox>, 9>, 2> FarBoxes;
+	std::array<std::array<std::unique_ptr<BoundaryBox>, 9>, 2> RightBoxes;
+	std::array<std::array<std::unique_ptr<BoundaryBox>, 9>, 10> tiles;
+	std::unique_ptr<Camera> cam;
 
 	bool KeyPressed;
 	bool GamePlaying;
@@ -133,16 +135,16 @@ private:
 	GUI BG;
 	GUI GameUndergroundImageGUI;
 	GUI ProgressPointer;
-	GUIShader* MenuGUIShader;
-	ParticleEmitter* StarEmitter;
-	ParticleEmitter* SparkEmitter;
-	ParticleEmitter* BombEmitter;
-	ParticleEmitter* FuseEmitter;
-	ParticleTexture* FuseTexture;
-	ParticleTexture* StarTexture;
-	ParticleTexture* SparkTexture;
-	ParticleTexture* BombTexture;
-	ParticleShader* starShader;
+	std::unique_ptr<GUIShader> MenuGUIShader;
+	std::unique_ptr<ParticleEmitter> StarEmitter;
+	std::unique_ptr<ParticleEmitter> SparkEmitter;
+	std::unique_ptr<ParticleEmitter> BombEmitter;
+	std::unique_ptr<ParticleEmitter> FuseEmitter;
+	std::unique_ptr<ParticleTexture> FuseTexture;
+	std::unique_ptr<ParticleTexture> StarTexture;
+	std::unique_ptr<ParticleTexture> SparkTexture;
+	std::unique_ptr<ParticleTexture> BombTexture;
+	std::unique_ptr<ParticleShader> starShader;
 	float FadeAlpha;
 	int FadeScreen;
 	float TextureAnimationFactor;
@@ -819,21 +821,21 @@ private:
 	{
 		if (!GamePlaying)
 		{
-			BG.Render(MenuGUIShader);
+			BG.Render(MenuGUIShader.get());
 			return;
 		}
 
-		HealthBar.Render(MenuGUIShader);
-		StaminaBar.Render(MenuGUIShader);
+		HealthBar.Render(MenuGUIShader.get());
+		StaminaBar.Render(MenuGUIShader.get());
 		for (int i = 0; i < ImageGUIs.size(); i++)
 		{
-			ImageGUIs[i].Render(MenuGUIShader);
+			ImageGUIs[i].Render(MenuGUIShader.get());
 		}
 
-		ProgressPointer.Render(MenuGUIShader);
-		txtScore->Render(fontShader);
+		ProgressPointer.Render(MenuGUIShader.get());
+		txtScore->Render(fontShader.get());
 
-		FadeBlack.Render(MenuGUIShader);
+		FadeBlack.Render(MenuGUIShader.get());
 	}
 
 	void RenderBoundaryBoxes()
@@ -842,9 +844,9 @@ private:
 		{
 			for (int j = 0; j < 9; j++)
 			{
-				FarBoxes[i][j]->Render(BoxShader, *cam, lightPosition);
-				LeftBoxes[i][j]->Render(BoxShader, *cam, lightPosition);
-				RightBoxes[i][j]->Render(BoxShader, *cam, lightPosition);
+				FarBoxes[i][j]->Render(BoxShader.get(), *cam, lightPosition);
+				LeftBoxes[i][j]->Render(BoxShader.get(), *cam, lightPosition);
+				RightBoxes[i][j]->Render(BoxShader.get(), *cam, lightPosition);
 			}
 		}
 	}
@@ -855,7 +857,7 @@ private:
 		{
 			for (int j = 0; j < 9; j++)
 			{
-				tiles[i][j]->Render(TileShader, *cam, lightPosition);
+				tiles[i][j]->Render(TileShader.get(), *cam, lightPosition);
 			}
 		}
 	}
@@ -863,42 +865,42 @@ private:
 	void RenderGameObjects()
 	{
 		for (int i = 0; i < SideBallCautionMarks.size(); i++)
-			SideBallCautionMarks[i].Render(SideBallCautionShader, *cam, lightPosition);
+			SideBallCautionMarks[i].Render(SideBallCautionShader.get(), *cam, lightPosition);
 
 		for (int i = 0; i < SideBarCautionMarks.size(); i++)
-			SideBarCautionMarks[i].Render(SideBarCautionShader, *cam, lightPosition);
+			SideBarCautionMarks[i].Render(SideBarCautionShader.get(), *cam, lightPosition);
 
 		for (int i = 0; i < FloorBarCautionMarks.size(); i++)
 		{
-			FloorBarCautionMarks[i].Render(FloorBarCautionShader, *cam, lightPosition);
+			FloorBarCautionMarks[i].Render(FloorBarCautionShader.get(), *cam, lightPosition);
 		}
 
 		for (int i = 0; i < FloorBombCautionMarks.size(); i++)
 		{
-			FloorBombCautionMarks[i].Render(FloorBombCautionShader, *cam, lightPosition);
+			FloorBombCautionMarks[i].Render(FloorBombCautionShader.get(), *cam, lightPosition);
 		}
 
 		for (int i = 0; i < FallCautionMarks.size(); i++)
 		{
-			FallCautionMarks[i].Render(FallCautionShader, *cam, lightPosition);
+			FallCautionMarks[i].Render(FallCautionShader.get(), *cam, lightPosition);
 		}
 
 
 		for (int i = 0; i < UpperBalls.size(); i++)
-			UpperBalls[i].Render(UpperBallShader, *cam, lightPosition);
+			UpperBalls[i].Render(UpperBallShader.get(), *cam, lightPosition);
 
 		for (int i = 0; i < UnderBalls.size(); i++)
-			UnderBalls[i].Render(UnderBallShader, *cam, lightPosition);
+			UnderBalls[i].Render(UnderBallShader.get(), *cam, lightPosition);
 
 		for (int i = 0; i < FallBalls.size(); i++)
-			FallBalls[i].Render(FallBallShader, *cam, lightPosition);
+			FallBalls[i].Render(FallBallShader.get(), *cam, lightPosition);
 
 		for (int i = 0; i < Sidebars.size(); i++)
 		{
-			Sidebars[i].Render(BarShader, *cam, lightPosition);
+			Sidebars[i].Render(BarShader.get(), *cam, lightPosition);
 		}
 
-		model->Render(modelShader, lightPosition, &player, *cam);
+		model->Render(modelShader.get(), lightPosition, &player, *cam);
 	}
 
 	void LoadGameData()
@@ -969,12 +971,12 @@ public:
 		TextureAnimationFactor = 0.0f;
 		StartWaitTime = 0.0f;
 		BPM = Global::GetCurrentMusic()->GetFloatBPM();
-		scoreSystem =new ScoreSystem(BPM);
+		scoreSystem = std::make_unique<ScoreSystem>(BPM);
 
-		MenuGUIShader = new GUIShader(L"GUIShaderFile.hlsl");
+		MenuGUIShader = std::make_unique<GUIShader>(L"GUIShaderFile.hlsl");
 		BG = GUI(L"Textures/black.png", XMFLOAT2(0, 0), XMFLOAT2(1, 1));
 		BG.LoadSRV(Global::GetCurrentMusic()->GetBGImageSRV(), true);
-		BG.Render(MenuGUIShader);
+		BG.Render(MenuGUIShader.get());
 
 		GameUndergroundImageGUI= GUI(L"Textures/Theme/bg3.jpg", XMFLOAT2(0, 0), XMFLOAT2(1, 1));
 		GameUndergroundImageGUI.SetAlpha(0.6f);
@@ -982,24 +984,24 @@ public:
 		ObstacleData = note_obstacle_parse(Global::GetCurrentMusic()->GetGameDataPath());
 		//LoadGameData();
 
-		SparkTexture = new ParticleTexture(L"Textures/Ingame/spark.png", 1);
-		SparkEmitter = new ParticleEmitter(SparkTexture, XMFLOAT3(0, 1, 0), 240, 8.0f, 0.1f, 1.0f, XMFLOAT3(0.4f, 0.4f, 0.4f));
+		SparkTexture = std::make_unique<ParticleTexture>(L"Textures/Ingame/spark.png", 1);
+		SparkEmitter = std::make_unique<ParticleEmitter>(SparkTexture.get(), XMFLOAT3(0, 1, 0), 240, 8.0f, 0.1f, 1.0f, XMFLOAT3(0.4f, 0.4f, 0.4f));
 		SparkEmitter->setDirection(XMFLOAT3(0, 1, 0), 0.56f);
 		SparkEmitter->setLifelength(0.08f, 0.05f);
 		SparkEmitter->setScale(XMFLOAT3(1.8f, 1.8f, 1.8f), 0.1);
 		SparkEmitter->setSpeedError(0.2f);
 		SparkEmitter->randomizeRotation();
 
-		FuseTexture = new ParticleTexture(L"Textures/Ingame/Fuse.png", 1);
-		FuseEmitter = new ParticleEmitter(FuseTexture, XMFLOAT3(0, 1, 0), 180, 8.0f, 0.1f, 1.0f, XMFLOAT3(0.4f, 0.4f, 0.4f));
+		FuseTexture = std::make_unique<ParticleTexture>(L"Textures/Ingame/Fuse.png", 1);
+		FuseEmitter = std::make_unique<ParticleEmitter>(FuseTexture.get(), XMFLOAT3(0, 1, 0), 180, 8.0f, 0.1f, 1.0f, XMFLOAT3(0.4f, 0.4f, 0.4f));
 		FuseEmitter->setDirection(XMFLOAT3(0, 1, 0), 0.66f);
 		FuseEmitter->setLifelength(0.2f, 0.01f);
 		FuseEmitter->setScale(XMFLOAT3(0.65f, 0.65f, 0.65f), 0.1);
 		FuseEmitter->setSpeedError(0.2f);
 		FuseEmitter->randomizeRotation();
 
-		BombTexture = new ParticleTexture(L"Textures/Ingame/NeonTriangle.png", 1);
-		BombEmitter = new ParticleEmitter(BombTexture, XMFLOAT3(0, 1, 0), 180, 8.0f, 0.1f, 1.0f, XMFLOAT3(0.4f, 0.4f, 0.4f));
+		BombTexture = std::make_unique<ParticleTexture>(L"Textures/Ingame/NeonTriangle.png", 1);
+		BombEmitter = std::make_unique<ParticleEmitter>(BombTexture.get(), XMFLOAT3(0, 1, 0), 180, 8.0f, 0.1f, 1.0f, XMFLOAT3(0.4f, 0.4f, 0.4f));
 		BombEmitter->setDirection(XMFLOAT3(0, 1, 0), 0.37f);
 		BombEmitter->setLifelength(0.3f, 0.3f);
 		BombEmitter->setScale(XMFLOAT3(0.5f, 0.5f, 0.5f), 0.1);
@@ -1007,8 +1009,8 @@ public:
 		BombEmitter->randomizeRotation();
 
 
-		StarTexture = new ParticleTexture(L"Textures/particleStar.png", 1);
-		StarEmitter = new ParticleEmitter(StarTexture, XMFLOAT3(0, 1, 0), 120, 8.0f, 0.1f, 1.0f, XMFLOAT3(0.4f, 0.4f, 0.4f));
+		StarTexture = std::make_unique<ParticleTexture>(L"Textures/particleStar.png", 1);
+		StarEmitter = std::make_unique<ParticleEmitter>(StarTexture.get(), XMFLOAT3(0, 1, 0), 120, 8.0f, 0.1f, 1.0f, XMFLOAT3(0.4f, 0.4f, 0.4f));
 		StarEmitter->setDirection(XMFLOAT3(0, 1, 0), 0.16f);
 		StarEmitter->setLifelength(1.0f, 0.3f);
 		StarEmitter->setScale(XMFLOAT3(0.4f, 0.4f, 0.4f), 0.1);
@@ -1020,9 +1022,9 @@ public:
 		{
 			for (int j = 0; j < 9; j++)
 			{
-				FarBoxes[i][j] = new BoundaryBox(XMFLOAT3(j-4, i, 4), XMFLOAT3(1, 1, 1));
-				LeftBoxes[i][j] = new BoundaryBox(XMFLOAT3(-5, i, -j + 4), XMFLOAT3(1, 1, 1));
-				RightBoxes[i][j] = new BoundaryBox(XMFLOAT3(4, i, -j + 4), XMFLOAT3(1, 1, 1));
+				FarBoxes[i][j] = std::make_unique<BoundaryBox>(XMFLOAT3(j-4, i, 4), XMFLOAT3(1, 1, 1));
+				LeftBoxes[i][j] = std::make_unique<BoundaryBox>(XMFLOAT3(-5, i, -j + 4), XMFLOAT3(1, 1, 1));
+				RightBoxes[i][j] = std::make_unique<BoundaryBox>(XMFLOAT3(4, i, -j + 4), XMFLOAT3(1, 1, 1));
 			}
 		}
 
@@ -1031,7 +1033,7 @@ public:
 		{
 			for (int j = 0; j < 9; j++)
 			{
-				tiles[i][j] = new BoundaryBox(XMFLOAT3(i - 5, -1, j - 4), XMFLOAT3(1, 1, 1));
+				tiles[i][j] = std::make_unique<BoundaryBox>(XMFLOAT3(i - 5, -1, j - 4), XMFLOAT3(1, 1, 1));
 			}
 		}
 
@@ -1039,8 +1041,9 @@ public:
 		FadeScreen = FADE_IN;
 
 		nextScene = SceneStatus::SELECT_MUSIC;
-		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
+		fontShader = std::make_unique<FontShader>(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
 		txtScore->SetCharacterGap(0.0f);
+		cam = std::make_unique<Camera>();
 		cam->LookAt(XMFLOAT3(-0.5, 10, -13.5f), XMFLOAT3(-0.5, 0, 0), XMFLOAT3(0, 1, 0));
 		cam->SetLens(MathHelper::Pi/6.0f, 640.0f / 480.0f, 0.001f, 1000.0f);
 		cam->SetPosition(XMFLOAT3(-0.5f, 10.8f, -13.5f));
@@ -1049,23 +1052,23 @@ public:
 		lightPosition = XMFLOAT3(0, 10 , -10);
 		//LoadImages
 
-		UpperBallShader = new EntityShader(L"EntityShaderFile.hlsl", ENTITY_UPPERSPHERE);
-		UnderBallShader = new EntityShader(L"EntityShaderFile.hlsl", ENTITY_UNDERSPHERE);
-		FallBallShader = new EntityShader(L"EntityShaderFile.hlsl", ENTITY_FALLSPHERE);
-		BoxShader = new EntityShader(L"EntityShaderFile.hlsl", ENTITY_BOX);
-		TileShader = new EntityShader(L"EntityShaderFile.hlsl",ENTITY_FLOOR);
-		BarShader = new EntityShader(L"EntityShaderFile.hlsl", ENTITY_SIDEBAR);
-		starShader = new ParticleShader(L"ParticleShaderFile.hlsl");
-		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png");
-		modelShader = new ModelShader(L"ModelShaderFile.hlsl");
+		UpperBallShader = std::make_unique<EntityShader>(L"EntityShaderFile.hlsl", ENTITY_UPPERSPHERE);
+		UnderBallShader = std::make_unique<EntityShader>(L"EntityShaderFile.hlsl", ENTITY_UNDERSPHERE);
+		FallBallShader = std::make_unique<EntityShader>(L"EntityShaderFile.hlsl", ENTITY_FALLSPHERE);
+		BoxShader = std::make_unique<EntityShader>(L"EntityShaderFile.hlsl", ENTITY_BOX);
+		TileShader = std::make_unique<EntityShader>(L"EntityShaderFile.hlsl",ENTITY_FLOOR);
+		BarShader = std::make_unique<EntityShader>(L"EntityShaderFile.hlsl", ENTITY_SIDEBAR);
+		starShader = std::make_unique<ParticleShader>(L"ParticleShaderFile.hlsl");
+		fontShader = std::make_unique<FontShader>(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png");
+		modelShader = std::make_unique<ModelShader>(L"ModelShaderFile.hlsl");
 
-		SideBallCautionShader = new EntityShader(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_SIDE_MAGIC_CIRCLE);
-		SideBarCautionShader = new EntityShader(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_SIDE_BAR);
-		FloorBarCautionShader = new EntityShader(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_FLOORBAR);
-		FloorBombCautionShader = new EntityShader(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_BOMB);
-		FallCautionShader = new EntityShader(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_FALL);
+		SideBallCautionShader = std::make_unique<EntityShader>(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_SIDE_MAGIC_CIRCLE);
+		SideBarCautionShader = std::make_unique<EntityShader>(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_SIDE_BAR);
+		FloorBarCautionShader = std::make_unique<EntityShader>(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_FLOORBAR);
+		FloorBombCautionShader = std::make_unique<EntityShader>(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_BOMB);
+		FallCautionShader = std::make_unique<EntityShader>(L"CautionShader.hlsl", ENTITY_CAUTIONMARK_FALL);
 		//PlayerShader = new EntityShader(L"EntityShaderFile.hlsl", "Models/A/dragon.obj", L"Models/A/skin.png");
-		txtScore = new Text(XMFLOAT2(0.8f, 0.73f), XMFLOAT2(0.06f, 0.06f), "0");
+		txtScore = std::make_unique<Text>(XMFLOAT2(0.8f, 0.73f), XMFLOAT2(0.06f, 0.06f), "0");
 		txtScore->SetAlign(TEXT_ALIGN_RIGHT);
 		txtScore->SetCharacterGap(0.08f);
 
@@ -1098,7 +1101,7 @@ public:
 		ProgressPointer = GUI(L"Textures/Ingame/ProgressBarCircle.png",
 			XMFLOAT2(PROGRESS_POINTER_BEGIN_POSITION, 0.9f), XMFLOAT2(0.04f, 0.04f));
 
-		model = new Model("Models/A/note.obj");
+		model = std::make_unique<Model>("Models/A/note.obj");
 
 		SongTotalLength = 100000000;
 
@@ -1245,23 +1248,18 @@ public:
 
 	virtual void Render()
 	{
-		GameUndergroundImageGUI.Render(MenuGUIShader);
+		GameUndergroundImageGUI.Render(MenuGUIShader.get());
 		//RenderBoxes
 		RenderBoundaryBoxes();
 		RenderTiles();
 
-		ParticleManager::render(starShader, cam);
+		ParticleManager::render(starShader.get(), cam.get());
 		RenderGameObjects();
 		//Render GUI
 		RenderGUI();
 
 	}
 
-	~InGameScene()
-	{
-		delete cam;
-		delete MenuGUIShader;
-		delete scoreSystem;
-	}
+	~InGameScene() override = default;
 	
 };

@@ -8,6 +8,8 @@
 #include"Text.h"
 #include"ParticleManager.h"
 #include"ParticleEmitter.h"
+#include <memory>
+#include <wrl/client.h>
 
 #define GRID_VELOCITY (0.15f)
 #define BG_HORIZONTAL_VELOCITY (-0.3f)
@@ -27,20 +29,20 @@ private:
 
 	int CurrentSelectMenu;
 	SceneStatus nextScene;
-	BackgroundShader* backgroundShader;
-	ID3D11ShaderResourceView* SRV_BG;
-	ID3D11ShaderResourceView* SRV_grid;
+	std::unique_ptr<BackgroundShader> backgroundShader;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV_BG;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV_grid;
 	XMFLOAT2 uvOffsetBG;
 	XMFLOAT2 uvOffsetGrid;
 
 	XMFLOAT2 MenuNormalScale;
 	XMFLOAT2 MenuCurrentScale;
 
-	ParticleEmitter* streakParticleEmitter;
-	ParticleShader* particleShader;
-	ParticleTexture* particleTexture;
+	std::unique_ptr<ParticleEmitter> streakParticleEmitter;
+	std::unique_ptr<ParticleShader> particleShader;
+	std::unique_ptr<ParticleTexture> particleTexture;
 
-	Camera* cam;
+	std::unique_ptr<Camera> cam;
 
 	//Sound* BackgroundSound;
 	//Sound* ScrollSound;
@@ -59,12 +61,12 @@ private:
 	GUI FadeBlack;
 	GUI SongBnImage;
 
-	GUIShader* MenuGUIShader;
+	std::unique_ptr<GUIShader> MenuGUIShader;
 
 	SoundSystem* soundSystem;
 	FMOD_SOUND* backgroundMusic;
 
-	FontShader* fontShader;
+	std::unique_ptr<FontShader> fontShader;
 	Text SCOREstring;
 	Text score;
 	Text SongTitleString;
@@ -129,8 +131,8 @@ private:
 		tech->GetPassByIndex(0)->Apply(0, Global::Context());
 
 		//여러가지 factor들을 로딩한다.
-		backgroundShader->LoadBG(SRV_BG);
-		backgroundShader->LoadGridImage(SRV_grid);
+		backgroundShader->LoadBG(SRV_BG.Get());
+		backgroundShader->LoadGridImage(SRV_grid.Get());
 		backgroundShader->Load_uvOffsetBG(uvOffsetBG);
 		backgroundShader->Load_uvOffsetGrid(uvOffsetGrid);
 
@@ -144,14 +146,14 @@ private:
 	{
 
 		for (int i = 0; i < ImageGUIs.size(); i++)
-			ImageGUIs[i].Render(MenuGUIShader);
+			ImageGUIs[i].Render(MenuGUIShader.get());
 
-		SCOREstring.Render(fontShader);
-		score.Render(fontShader);
-		SongTitleString.Render(fontShader);
-		SongBnImage.Render(MenuGUIShader);
+		SCOREstring.Render(fontShader.get());
+		score.Render(fontShader.get());
+		SongTitleString.Render(fontShader.get());
+		SongBnImage.Render(MenuGUIShader.get());
 
-		FadeBlack.Render(MenuGUIShader);
+		FadeBlack.Render(MenuGUIShader.get());
 	}
 public:
 	ResultScene(SoundSystem* soundSystem)
@@ -163,28 +165,28 @@ public:
 		pressTimeSum = 0.0f;
 		FadeAlpha = 1.0f;
 
-		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
+		fontShader = std::make_unique<FontShader>(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
 		SCOREstring.SetCharacterGap(0.0f);
 		score.SetCharacterGap(0.0f);
 		SongTitleString.SetCharacterGap(0.0f);
 
-		backgroundShader = new BackgroundShader(L"MainBGShader.hlsl");
-		particleTexture = new ParticleTexture(L"Textures/streak.jpg", 1);
-		streakParticleEmitter = new ParticleEmitter(particleTexture, XMFLOAT3(0, -1, 0), 19, 10.6f, 0.1, 1, XMFLOAT3(0.2f, 3.0f, 0));
+		backgroundShader = std::make_unique<BackgroundShader>(L"MainBGShader.hlsl");
+		particleTexture = std::make_unique<ParticleTexture>(L"Textures/streak.jpg", 1);
+		streakParticleEmitter = std::make_unique<ParticleEmitter>(particleTexture.get(), XMFLOAT3(0, -1, 0), 19, 10.6f, 0.1, 1, XMFLOAT3(0.2f, 3.0f, 0));
 		streakParticleEmitter->setDirection(XMFLOAT3(0, 1, 0), 0.0f);
 		streakParticleEmitter->setScale(XMFLOAT3(0.2f, 3.0f, 0), 0.2);
-		particleShader = new ParticleShader(L"ParticleShaderFile.hlsl");
+		particleShader = std::make_unique<ParticleShader>(L"ParticleShaderFile.hlsl");
 		//LoadImages
-		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/bg.jpg", 0, 0, &SRV_BG, 0));
-		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/grid.jpg", 0, 0, &SRV_grid, 0));
+		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/bg.jpg", 0, 0, SRV_BG.ReleaseAndGetAddressOf(), 0));
+		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/grid.jpg", 0, 0, SRV_grid.ReleaseAndGetAddressOf(), 0));
 
 		//LoadGUI
 		FadeBlack = GUI(L"Textures/black.png", XMFLOAT2(0, 0), XMFLOAT2(10.0f, 10.0f));
 		FadeBlack.SetAlpha(FadeAlpha);
 		FadeScreen = FADE_IN;
 
-		MenuGUIShader = new GUIShader(L"GUIShaderFile.hlsl");
-		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png");
+		MenuGUIShader = std::make_unique<GUIShader>(L"GUIShaderFile.hlsl");
+		fontShader = std::make_unique<FontShader>(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png");
 
 		SCOREstring = Text(XMFLOAT2(0.0f, 0.27f), XMFLOAT2(0.05f, 0.05f), "SCORE");
 		SCOREstring.SetAlign(TEXT_ALIGN_LEFT);
@@ -282,21 +284,10 @@ public:
 		//Render BG
 		RenderBackground();
 		//Render Streak
-		ParticleManager::render(particleShader, cam);
+		ParticleManager::render(particleShader.get(), cam.get());
 		//Render GUI
 		RenderGUI();
 	}
 
-	~ResultScene()
-	{
-		delete backgroundShader;
-		ReleaseCOM(SRV_BG);
-		ReleaseCOM(SRV_grid);
-		delete streakParticleEmitter;
-		delete particleShader;
-		delete particleTexture;
-
-		delete cam;
-		delete MenuGUIShader;
-	}
+	~ResultScene() override = default;
 };
