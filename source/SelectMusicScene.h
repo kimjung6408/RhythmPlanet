@@ -7,6 +7,10 @@
 #include"Music.h"
 #include"SoundSystem.h"
 #include"Text.h"
+#include <deque>
+#include <memory>
+#include <utility>
+#include <wrl/client.h>
 #define MENU_SELECT_MUSIC 0
 #define MENU_OPTION 1
 #define MENU_EXIT 2
@@ -57,18 +61,18 @@ private:
 	int CurrentSelectMusic;
 	float scrollAnimationFactor;
 	int scrollMoveFactor;
-	BackgroundShader* backgroundShader;
-	FontShader* fontShader;
-	ID3D11ShaderResourceView* SRV_BG;
-	ID3D11ShaderResourceView* SRV_grid;
+	std::unique_ptr<BackgroundShader> backgroundShader;
+	std::unique_ptr<FontShader> fontShader;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV_BG;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV_grid;
 	XMFLOAT2 uvOffsetBG;
 	XMFLOAT2 uvOffsetGrid;
 
-	ParticleEmitter* streakParticleEmitter;
-	ParticleShader* particleShader;
-	ParticleTexture* particleTexture;
+	std::unique_ptr<ParticleEmitter> streakParticleEmitter;
+	std::unique_ptr<ParticleShader> particleShader;
+	std::unique_ptr<ParticleTexture> particleTexture;
 
-	Camera* cam;
+	std::unique_ptr<Camera> cam;
 
 	//Sound* BackgroundSound;
 	//Sound* ScrollSound;
@@ -79,7 +83,7 @@ private:
 	float pressTimeSum;
 	float scaleTimeSum;
 	vector<GUI> ImageGUIs;
-	deque<MusicItem*> MusicItems;
+	std::deque<std::unique_ptr<MusicItem>> MusicItems;
 	bool MusicScrollMove; //사용자가 상하 방향키를 눌렀을 때
 	GUI HealthBar;
 	GUI StaminaBar;
@@ -88,13 +92,13 @@ private:
 	GUI spinCircle2;
 	GUI spinCircle3;
 
-	GUI* introImage;
+	std::unique_ptr<GUI> introImage;
 
 	GUI FadeBlack;
 
-	GUIShader* MenuGUIShader;
+	std::unique_ptr<GUIShader> MenuGUIShader;
 	vector<Triangle> triangles;
-	TriangleShader* triangleShader;
+	std::unique_ptr<TriangleShader> triangleShader;
 
 	float FadeAlpha;
 	int FadeScreen;
@@ -192,33 +196,33 @@ private:
 
 	void RenderGUI()
 	{
-		spinCircle1.Render(MenuGUIShader);
-		spinCircle2.Render(MenuGUIShader);
-		spinCircle3.Render(MenuGUIShader);
+		spinCircle1.Render(MenuGUIShader.get());
+		spinCircle2.Render(MenuGUIShader.get());
+		spinCircle3.Render(MenuGUIShader.get());
 
 
 		for (int i = 0; i < MusicItems.size(); i++)
 		{
-			MusicItems[i]->MusicItemBox.Render(MenuGUIShader);
+			MusicItems[i]->MusicItemBox.Render(MenuGUIShader.get());
 		}
 
 		for (int i = 0; i < MusicItems.size(); i++)
 		{
-			MusicItems[i]->txtTitle.Render(fontShader);
-			MusicItems[i]->txtArtist.Render(fontShader);
+			MusicItems[i]->txtTitle.Render(fontShader.get());
+			MusicItems[i]->txtArtist.Render(fontShader.get());
 			
 			if (i == 7)
-				MusicItems[i]->txtBPM.Render(fontShader);
+				MusicItems[i]->txtBPM.Render(fontShader.get());
 		}
 
 		for (int i = 0; i < ImageGUIs.size(); i++)
 		{
-			ImageGUIs[i].Render(MenuGUIShader);
+			ImageGUIs[i].Render(MenuGUIShader.get());
 		}
 
-		introImage->Render(MenuGUIShader);
+		introImage->Render(MenuGUIShader.get());
 
-		FadeBlack.Render(MenuGUIShader);
+		FadeBlack.Render(MenuGUIShader.get());
 	}
 
 	void RenderBackground()
@@ -238,8 +242,8 @@ private:
 		tech->GetPassByIndex(0)->Apply(0, Global::Context());
 
 		//여러가지 factor들을 로딩한다.
-		backgroundShader->LoadBG(SRV_BG);
-		backgroundShader->LoadGridImage(SRV_grid);
+		backgroundShader->LoadBG(SRV_BG.Get());
+		backgroundShader->LoadGridImage(SRV_grid.Get());
 		backgroundShader->Load_uvOffsetBG(uvOffsetBG);
 		backgroundShader->Load_uvOffsetGrid(uvOffsetGrid);
 
@@ -252,7 +256,7 @@ private:
 	void RenderTriangles()
 	{
 		for (int i = 0; i < triangles.size(); i++)
-			triangles[i].Render(*cam, triangleShader);
+			triangles[i].Render(*cam, triangleShader.get());
 	}
 public:
 	SelectMusicScene(SoundSystem* soundSystem)
@@ -271,24 +275,24 @@ public:
 		FadeScreen=FADE_IN;
 		uvOffsetBG = XMFLOAT2(0, 0);
 		uvOffsetGrid = XMFLOAT2(0, 0);
-		introImage = NULL;
+		introImage = nullptr;
 
 		nextScene = SceneStatus::SELECT_MUSIC;
-		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
-		cam = new Camera();
+		fontShader = std::make_unique<FontShader>(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png", L"Textures/FontAtlas.metrics");
+		cam = std::make_unique<Camera>();
 		cam->LookAt(XMFLOAT3(0, 0, -10), XMFLOAT3(0, 0, 0), XMFLOAT3(0, 1, 0));
 		cam->UpdateViewMatrix();
 
-		backgroundShader = new BackgroundShader(L"MainBGShader.hlsl");
-		particleTexture = new ParticleTexture(L"Textures/streak.jpg", 1);
-		streakParticleEmitter = new ParticleEmitter(particleTexture, XMFLOAT3(0, -1, 0), 19, 10.6f, 0.1, 1, XMFLOAT3(0.2f, 3.0f, 0));
+		backgroundShader = std::make_unique<BackgroundShader>(L"MainBGShader.hlsl");
+		particleTexture = std::make_unique<ParticleTexture>(L"Textures/streak.jpg", 1);
+		streakParticleEmitter = std::make_unique<ParticleEmitter>(particleTexture.get(), XMFLOAT3(0, -1, 0), 19, 10.6f, 0.1, 1, XMFLOAT3(0.2f, 3.0f, 0));
 		streakParticleEmitter->setDirection(XMFLOAT3(0, 1, 0), 0.0f);
 		streakParticleEmitter->setScale(XMFLOAT3(0.2f, 3.0f, 0), 0.2);
-		particleShader = new ParticleShader(L"ParticleShaderFile.hlsl");
-		fontShader = new FontShader(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png");
+		particleShader = std::make_unique<ParticleShader>(L"ParticleShaderFile.hlsl");
+		fontShader = std::make_unique<FontShader>(L"FontShaderFile.hlsl", L"Textures/FontAtlas.png");
 		//LoadImages
-		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/bg.jpg", 0, 0, &SRV_BG, 0));
-		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/grid.jpg", 0, 0, &SRV_grid, 0));
+		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/bg.jpg", 0, 0, SRV_BG.ReleaseAndGetAddressOf(), 0));
+		HR(D3DX11CreateShaderResourceViewFromFile(Global::Device(), L"Textures/Theme/grid.jpg", 0, 0, SRV_grid.ReleaseAndGetAddressOf(), 0));
 
 		for (int i = 0; i < 70; i++)
 			triangles.push_back(Triangle(-2.0f));
@@ -321,30 +325,30 @@ public:
 		{
 			if (numMusics != 0)
 			{
-				MusicItem* item =new MusicItem(GUI(L"Textures/Theme/SELECTGUI/MusicItem.png", XMFLOAT2(0.5f, 0.3f*i - 1.8f), XMFLOAT2(0.6f, 0.15f)), &((*pMusicList)[(Global::GetCurrentMusicIndex() - 7 + 7 * Global::GetNumOfSongs() + i) % Global::GetNumOfSongs()]));
+				auto item = std::make_unique<MusicItem>(GUI(L"Textures/Theme/SELECTGUI/MusicItem.png", XMFLOAT2(0.5f, 0.3f*i - 1.8f), XMFLOAT2(0.6f, 0.15f)), &((*pMusicList)[(Global::GetCurrentMusicIndex() - 7 + 7 * Global::GetNumOfSongs() + i) % Global::GetNumOfSongs()]));
 				item->MusicItemBox.SetAlpha(0.8f);
-				MusicItems.push_back(item);
+				MusicItems.push_back(std::move(item));
 			}
 			else
 			{
-				MusicItem* item = new MusicItem(GUI(L"Textures/Theme/SELECTGUI/MusicItem.png", XMFLOAT2(0.5f, 0.3f*i - 1.8f), XMFLOAT2(0.6f, 0.15f)), NULL);
+				auto item = std::make_unique<MusicItem>(GUI(L"Textures/Theme/SELECTGUI/MusicItem.png", XMFLOAT2(0.5f, 0.3f*i - 1.8f), XMFLOAT2(0.6f, 0.15f)), NULL);
 				item->MusicItemBox.SetAlpha(0.8f);
-				MusicItems.push_back(item);
+				MusicItems.push_back(std::move(item));
 			}
 		}
 
-		introImage = new GUI(L"Textures/black.png", XMFLOAT2(-0.51f, 0.19f), XMFLOAT2(0.38f, 0.14f));
+		introImage = std::make_unique<GUI>(L"Textures/black.png", XMFLOAT2(-0.51f, 0.19f), XMFLOAT2(0.38f, 0.14f));
 		if (numMusics != 0)
 			introImage->LoadSRV(MusicItems[7]->pMusic->GetIntroImage(), true);
 
-		MenuGUIShader = new GUIShader(L"GUIShaderFile.hlsl");
+		MenuGUIShader = std::make_unique<GUIShader>(L"GUIShaderFile.hlsl");
 
 		FadeBlack = GUI(L"Textures/black.png", XMFLOAT2(0.0f, 0.0f), XMFLOAT2(10.0f, 10.0f));
 		FadeBlack.SetAlpha(FadeAlpha);
 		//LoadSounds
 
 		//LoadShaders
-		triangleShader = new TriangleShader(L"TriangleShaderFile.hlsl");
+		triangleShader = std::make_unique<TriangleShader>(L"TriangleShaderFile.hlsl");
 
 		//Initialize Animation Factors
 		scaleTimeSum = 1.0f;
@@ -422,11 +426,11 @@ public:
 				Global::UpWheelMusicIndex();
 				KeyDirection = 1;
 
-				MusicItem* tmpItem;
+				std::unique_ptr<MusicItem> tmpItem;
 
 				//KeyDirection이 1이면 위에 있는 것을 아래로 가져오게 된다. 따라서, 맨 아래에 있는 것을 맨 위에 넣고 정보를 갱신해줘야 한다.
 				//KeyDirection이 -1이면 아래 있는 것을 위로 가져오게 된다.
-					tmpItem = MusicItems.back();
+					tmpItem = std::move(MusicItems.back());
 					int currentMusicIndex = Global::GetCurrentMusicIndex();
 					int frontMusicIndex = ((currentMusicIndex - 7) + 7 * Global::GetNumOfSongs()) % Global::GetNumOfSongs();
 					tmpItem->pMusic = &(Global::GetMusicList()->at(frontMusicIndex));
@@ -435,7 +439,7 @@ public:
 					tmpItem->txtBPM.SetText(tmpItem->pMusic->GetstrBPM());
 
 					MusicItems.pop_back();
-					MusicItems.push_front(tmpItem);
+					MusicItems.push_front(std::move(tmpItem));
 
 				}
 
@@ -453,9 +457,9 @@ public:
 				Global::DownWheelMusicIndex();
 				KeyDirection = -1;
 
-				MusicItem* tmpItem;
+				std::unique_ptr<MusicItem> tmpItem;
 
-				tmpItem = MusicItems.front();
+				tmpItem = std::move(MusicItems.front());
 				int currentMusicIndex = Global::GetCurrentMusicIndex();
 				int backMusicIndex= (currentMusicIndex + 4) % Global::GetNumOfSongs();
 				tmpItem->pMusic = &(Global::GetMusicList()->at(backMusicIndex));
@@ -464,7 +468,7 @@ public:
 				tmpItem->txtBPM.SetText(tmpItem->pMusic->GetstrBPM());
 
 				MusicItems.pop_front();
-				MusicItems.push_back(tmpItem);
+				MusicItems.push_back(std::move(tmpItem));
 			}
 			}
 		
@@ -484,7 +488,7 @@ public:
 		//Render BG
 		RenderBackground();
 		//Render Streak
-		ParticleManager::render(particleShader, cam);
+		ParticleManager::render(particleShader.get(), cam.get());
 
 
 		//Render Triangle
@@ -494,21 +498,5 @@ public:
 	}
 
 
-	 ~SelectMusicScene()
-	{
-		delete backgroundShader;
-		ReleaseCOM(SRV_BG);
-		ReleaseCOM(SRV_grid);
-		delete streakParticleEmitter;
-		delete particleShader;
-		delete particleTexture;
-		delete introImage;
-		delete cam;
-		delete MenuGUIShader;
-
-		delete triangleShader;
-
-		for (int i = 0; i < 12; i++)
-			delete MusicItems[i];
-	}
+	 ~SelectMusicScene() override = default;
 };
