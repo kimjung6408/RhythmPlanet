@@ -6,8 +6,8 @@
 class SkyboxShader : public ShaderProgram
 {
 private:
-	//AttributeµéÀ» ¼±¾ğÇÏ°í getAllAttributeLocations¿¡¼­ ÃÊ±âÈ­
-	//skybox´Â ¿ùµåº¯È¯ ¹× viewº¯È¯ÀÇ translationÀ» Àû¿ëÇÏÁö ¾Ê´Â´Ù.
+	//Attributeë“¤ì„ ì„ ì–¸í•˜ê³  getAllAttributeLocationsì—ì„œ ì´ˆê¸°í™”
+	//skyboxëŠ” ì›”ë“œë³€í™˜ ë° viewë³€í™˜ì˜ translationì„ ì ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 
 	ID3DX11EffectTechnique* mTech;
 	ID3DX11EffectMatrixVariable* mWorldViewProj;
@@ -17,7 +17,7 @@ private:
 	ID3D11InputLayout* mInputLayout;
 
 private:
-	//initialize½Ã È£ÃâµÊ. c++ÄÚµå¿Í ½¦ÀÌ´õ¸¦ ¿¬°áÇÔ.
+	//initializeì‹œ í˜¸ì¶œë¨. c++ì½”ë“œì™€ ì‰ì´ë”ë¥¼ ì—°ê²°í•¨.
 	void getAllAttributeLocations()
 	{
 		mTech = Shader()->GetTechniqueByName("skyTech");
@@ -25,7 +25,7 @@ private:
 		mCubeMap = Shader()->GetVariableByName("texCubeMap")->AsShaderResource();
 	}
 
-	//input layout ¼³Á¤.
+	//input layout ì„¤ì •.
 	void setInputLayout()
 	{
 		D3D11_INPUT_ELEMENT_DESC temp1[1] =
@@ -47,16 +47,20 @@ public:
 		setInputLayout();
 	}
 
-	//½ºÄ«ÀÌ¹Ú½º¿¡ ÀÔÈú Å¥ºê¸ÊÀ» ½¦ÀÌ´õ¿¡ ·ÎµùÇÑ´Ù.
+	~SkyboxShader()
+	{
+		ReleaseCOM(mInputLayout);
+	}
+};
 	void loadCubeMap(ID3D11ShaderResourceView* pCubeMapResourceView)
 	{
 		mCubeMap->SetResource(pCubeMapResourceView);
 	}
 
-	//view º¯È¯ Çà·ÄÀ» ½¦ÀÌ´õ¿¡ ·ÎµùÇÑ´Ù.
+	//view ë³€í™˜ í–‰ë ¬ì„ ì‰ì´ë”ì— ë¡œë”©í•œë‹¤.
 	void loadWorldViewProjMatrix(XMMATRIX& inViewMatrix, XMMATRIX& projMatrix) {
-		//skybox°¡ ÀÌµ¿ÇÏ´Â °ÍÀ» ¹æÁöÇÏ±â À§ÇØ¼­ x,y,z ÀÌµ¿¼ººĞµéÀ» 0À¸·Î º¯È¯ÇÑ´Ù.
-		//µû¶ó¼­, È¸Àüº¯È¯¸¸ Àû¿ëÇÑ´Ù.
+		//skyboxê°€ ì´ë™í•˜ëŠ” ê²ƒì„ ë°©ì§€í•˜ê¸° ìœ„í•´ì„œ x,y,z ì´ë™ì„±ë¶„ë“¤ì„ 0ìœ¼ë¡œ ë³€í™˜í•œë‹¤.
+		//ë”°ë¼ì„œ, íšŒì „ë³€í™˜ë§Œ ì ìš©í•œë‹¤.
 		XMMATRIX viewMatrix = inViewMatrix;
 
 		viewMatrix._41 = 0;
@@ -68,9 +72,9 @@ public:
 		mWorldViewProj->SetMatrix(reinterpret_cast<float*>(&worldViewProjMatrix));
 	}
 
-	//½¦ÀÌ´õ¿¡ ÀúÀåµÈ input layoutÀ» ºÒ·¯¿Â´Ù.
+	//ì‰ì´ë”ì— ì €ì¥ëœ input layoutì„ ë¶ˆëŸ¬ì˜¨ë‹¤.
 	ID3D11InputLayout* InputLayout() { return mInputLayout; }
 	
-	//½¦ÀÌ´õÀÇ TechniqueÀ» ¾ò´Â´Ù.
+	//ì‰ì´ë”ì˜ Techniqueì„ ì–»ëŠ”ë‹¤.
 	ID3DX11EffectTechnique* getTech() { return mTech; }
 };

@@ -22,7 +22,7 @@ class EntityShader : public ShaderProgram
 	static const LPCWSTR FALLSPHERE_TEX_PATH;
 	static const LPCWSTR BOX_TEX_PATH;
 	static const LPCWSTR PLANE_TEX_PATH;
-	static const LPCWSTR BAR_TEX_PATH; //Æ¢¾î³ª¿Ô´Ù°¡ µé¾î°¡´Â Àå¾Ö¹° ÅØ½ºÃÄ.
+	static const LPCWSTR BAR_TEX_PATH; //íŠ€ì–´ë‚˜ì™”ë‹¤ê°€ ë“¤ì–´ê°€ëŠ” ì¥ì• ë¬¼ í…ìŠ¤ì³.
 	static const LPCWSTR MAGICCIRCLE_TEX_PATH;
 	static const LPCWSTR BOMB_CAUTION_TEX_PATH;
 	static const LPCWSTR SIDEBAR_CAUTION_TEX_PATH;
@@ -36,17 +36,17 @@ class EntityShader : public ShaderProgram
 	ID3D11ShaderResourceView* pSRV;
 
 	ID3DX11EffectTechnique* mTech;
-	//¶óÀÌÆÃÀ» À§ÇÑ ¿ùµå Çà·Ä (¿ùµå °ø°£»óÀÇ vertex À§Ä¡¸¦ ±¸ÇÔ. ÀÌ À§Ä¡¿Í lightÀÇ À§Ä¡¸¦ ÀÌ¿ë)
+	//ë¼ì´íŒ…ì„ ìœ„í•œ ì›”ë“œ í–‰ë ¬ (ì›”ë“œ ê³µê°„ìƒì˜ vertex ìœ„ì¹˜ë¥¼ êµ¬í•¨. ì´ ìœ„ì¹˜ì™€ lightì˜ ìœ„ì¹˜ë¥¼ ì´ìš©)
 	ID3DX11EffectMatrixVariable* mWorld;
 	ID3DX11EffectMatrixVariable* mWorldViewProj;
-	//¶óÀÌÆÃÀ» À§ÇÑ, ³ë¸»ÀÇ º¯È¯À» À§ÇÑ worldÇà·ÄÀÇ inverse transpose
+	//ë¼ì´íŒ…ì„ ìœ„í•œ, ë…¸ë§ì˜ ë³€í™˜ì„ ìœ„í•œ worldí–‰ë ¬ì˜ inverse transpose
 	ID3DX11EffectMatrixVariable* mWorldInvTranspose;
 	ID3DX11EffectShaderResourceVariable* mTexture;
 	//ID3DX11EffectShaderResourceVariable* mNormalMap;
 	ID3DX11EffectVariable* mLightPosition;
 	ID3DX11EffectVariable* mAmbientColor;
 
-	//ÅØ½ºÃÄ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» À§ÇÑ offset.
+	//í…ìŠ¤ì³ ì• ë‹ˆë©”ì´ì…˜ì„ ìœ„í•œ offset.
 	ID3DX11EffectVariable* mUVOffset;
 	//inputLayout
 	ID3D11InputLayout* mInputLayout;
@@ -66,12 +66,12 @@ public:
 		}
 	};
 
-	//ENTITY_SPHERE : ±¸¸ğ¾ç
-	//ENTITY_BOX : ¹Ú½º¸ğ¾ç
-	//ENTITY_PLAYER : ÇÃ·¹ÀÌ¾î
-	//ENTITY_BAR : Æ¢¾î³ª¿Ô´Ù°¡ µé¾î°¡´Â Àå¾Ö¹° ¿ÀºêÁ§Æ®.
-	//ENTITY_FLOOR : ¹Ù´Ú Å¸ÀÏ Å¥ºê
-	//ENTITY_CAUTIONMARK : °æ°í¸¶Å©
+	//ENTITY_SPHERE : êµ¬ëª¨ì–‘
+	//ENTITY_BOX : ë°•ìŠ¤ëª¨ì–‘
+	//ENTITY_PLAYER : í”Œë ˆì´ì–´
+	//ENTITY_BAR : íŠ€ì–´ë‚˜ì™”ë‹¤ê°€ ë“¤ì–´ê°€ëŠ” ì¥ì• ë¬¼ ì˜¤ë¸Œì íŠ¸.
+	//ENTITY_FLOOR : ë°”ë‹¥ íƒ€ì¼ íë¸Œ
+	//ENTITY_CAUTIONMARK : ê²½ê³ ë§ˆí¬
 	EntityShader(LPCWSTR ShaderFilePath, int EntityType)
 		:ShaderProgram(ShaderFilePath)
 	{
@@ -145,7 +145,7 @@ public:
 
 		pVB = nsCreator::createVertexBuffer(vertices);
 
-		////CAUTION MARK°¡ ¾Æ´Ò ¶§ Index buffer¸¦ »ı¼ºÇÔ.
+		////CAUTION MARKê°€ ì•„ë‹ ë•Œ Index bufferë¥¼ ìƒì„±í•¨.
 		//if (EntityType <7)
 			pIB = nsCreator::createIndexBuffer(indices);
 		//else
@@ -205,14 +205,14 @@ public:
 	ID3D11InputLayout* InputLayout() 
 	{ return mInputLayout; }
 
-	//texture¸¦ ¸®ÅÏÇÑ´Ù.
+	//textureë¥¼ ë¦¬í„´í•œë‹¤.
 	ID3D11ShaderResourceView* getSRV()
 	{
 		return pSRV;
 	}
 
 
-	//º¯È¯ Çà·ÄÀ» ½¦ÀÌ´õ¿¡ ·ÎµùÇÑ´Ù.
+	//ë³€í™˜ í–‰ë ¬ì„ ì‰ì´ë”ì— ë¡œë”©í•œë‹¤.
 	void LoadWorldViewProjMatrix(XMMATRIX& modelViewProjMatrix)
 	{
 		mWorldViewProj->SetMatrix(reinterpret_cast<float*>(&modelViewProjMatrix));
@@ -247,6 +247,14 @@ public:
 		mAmbientColor->SetRawValue(&Ambient, 0, sizeof(XMFLOAT4));
 	}
 
+	~EntityShader()
+	{
+		ReleaseCOM(mInputLayout);
+		ReleaseCOM(pVB);
+		ReleaseCOM(pIB);
+		ReleaseCOM(pSRV);
+	}
+
 	UINT getIndexCount()
 	{
 		return IndexCount;
@@ -258,7 +266,7 @@ const LPCWSTR EntityShader::FALLSPHERE_TEX_PATH = L"Textures/Ingame/BallGreen.jp
 
 const LPCWSTR EntityShader::BOX_TEX_PATH= L"Textures/Ingame/BoxTexture.jpg";
 const LPCWSTR EntityShader::PLANE_TEX_PATH=L"Textures/Ingame/PlaneTexture.jpg";
-const LPCWSTR EntityShader::BAR_TEX_PATH=L"Textures/Ingame/BarTexture.jpg"; //Æ¢¾î³ª¿Ô´Ù°¡ µé¾î°¡´Â Àå¾Ö¹° ÅØ½ºÃÄ.
+const LPCWSTR EntityShader::FLOORBAR_TEX_PATH = L"Textures/Ingame/FloorBarTexture.jpg";
 const LPCWSTR EntityShader::MAGICCIRCLE_TEX_PATH = L"Textures/Ingame/MagicCircle.png";
 const LPCWSTR EntityShader::FALL_CAUTION_TEX_PATH = L"Textures/Ingame/NeonHeart.png";
 const LPCWSTR EntityShader::SIDEBAR_CAUTION_TEX_PATH = L"Textures/Ingame/ShinyLight.png";

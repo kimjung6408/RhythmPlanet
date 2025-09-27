@@ -7,10 +7,10 @@ class ModelShader : public ShaderProgram
 {
 
 	ID3DX11EffectTechnique* mTech;
-	//¶óÀÌÆÃÀ» À§ÇÑ ¿ùµå Çà·Ä (¿ùµå °ø°£»óÀÇ vertex À§Ä¡¸¦ ±¸ÇÔ. ÀÌ À§Ä¡¿Í lightÀÇ À§Ä¡¸¦ ÀÌ¿ë)
+	//ë¼ì´íŒ…ì„ ìœ„í•œ ì›”ë“œ í–‰ë ¬ (ì›”ë“œ ê³µê°„ìƒì˜ vertex ìœ„ì¹˜ë¥¼ êµ¬í•¨. ì´ ìœ„ì¹˜ì™€ lightì˜ ìœ„ì¹˜ë¥¼ ì´ìš©)
 	ID3DX11EffectMatrixVariable* mWorld;
 	ID3DX11EffectMatrixVariable* mWorldViewProj;
-	//¶óÀÌÆÃÀ» À§ÇÑ, ³ë¸»ÀÇ º¯È¯À» À§ÇÑ worldÇà·ÄÀÇ inverse transpose
+	//ë¼ì´íŒ…ì„ ìœ„í•œ, ë…¸ë§ì˜ ë³€í™˜ì„ ìœ„í•œ worldí–‰ë ¬ì˜ inverse transpose
 	ID3DX11EffectMatrixVariable* mWorldInvTranspose;
 	ID3DX11EffectShaderResourceVariable* mTexture_Diffuse[3];
 	ID3DX11EffectShaderResourceVariable* mTexture_Specular[2];
@@ -18,7 +18,7 @@ class ModelShader : public ShaderProgram
 	ID3DX11EffectVariable* mLightPosition;
 	ID3DX11EffectVariable* mAmbientColor;
 
-	//ÅØ½ºÃÄ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» À§ÇÑ offset.
+	//í…ìŠ¤ì³ ì• ë‹ˆë©”ì´ì…˜ì„ ìœ„í•œ offset.
 	ID3DX11EffectVariable* mUVOffset;
 	ID3DX11EffectVariable* mMeshNumber;
 	//inputLayout
@@ -39,7 +39,7 @@ public:
 		}
 	};
 
-	//°æ·Î¿¡ ¸Â°Ô µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Í¼­ ½¦ÀÌ´õ ¿ÀºêÁ§Æ® »ý¼º.
+	//ê²½ë¡œì— ë§žê²Œ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì™€ì„œ ì‰ì´ë” ì˜¤ë¸Œì íŠ¸ ìƒì„±.
 	ModelShader(LPCWSTR ShaderFilePath)
 		:ShaderProgram(ShaderFilePath), mAmbientColor(0)
 	{
@@ -96,7 +96,7 @@ public:
 	}
 
 
-	//º¯È¯ Çà·ÄÀ» ½¦ÀÌ´õ¿¡ ·ÎµùÇÑ´Ù.
+	//ë³€í™˜ í–‰ë ¬ì„ ì‰ì´ë”ì— ë¡œë”©í•œë‹¤.
 	void LoadWorldViewProjMatrix(XMMATRIX& modelViewProjMatrix)
 	{
 		mWorldViewProj->SetMatrix(reinterpret_cast<float*>(&modelViewProjMatrix));
@@ -141,6 +141,11 @@ public:
 		{
 			mTexture_Specular[index - 1]->SetResource(SRV);
 		}
+	}
+
+	~ModelShader()
+	{
+		ReleaseCOM(mInputLayout);
 	}
 
 	void LoadMeshNumber(int MeshNumber)
